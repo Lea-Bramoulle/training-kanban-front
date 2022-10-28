@@ -1,0 +1,76 @@
+@use 'src/styles/vars';
+
+.sidebar {
+    width:20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem ;
+
+    &-logo {
+        width:70%;
+        margin:0 auto;
+    }
+  }
+
+  .boards {
+    height:80%;
+
+    &-title {
+        color: vars.$mediumGrey;
+        text-transform: uppercase;
+        font-weight: bolder;
+    }
+
+    &-container {
+        margin: 1rem 0;
+    }
+
+    &-element {
+        margin: 0.5rem 0 0.5rem -2rem;
+        padding: 0.5rem 2rem;
+        color: vars.$mediumGrey;
+        font-size: 1rem;
+
+        &--active {
+            background-color: vars.$mainPurple;
+            border-radius: 0 25px 25px 0;
+            color:white;
+        }
+    }
+  }
+
+  .darkmode {
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5em 1.5rem ;
+        background-color: vars.$lightGrey;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    &-button {
+        width:3rem;
+        height:1.5rem;
+        background-color: vars.$mainPurple;
+        border-radius: 20px;
+        position: relative;        
+
+        &-toggler {
+            width: 1rem;
+            height: 1rem;
+            background-color: #fff;
+            border-radius: 50px; 
+            position: absolute;
+            top:0.25rem;
+            left:0.25rem;  
+            transition-duration: 0.5s;
+            
+            &--active {
+                left:1.75rem;
+            }
+        }
+    }
+  }
