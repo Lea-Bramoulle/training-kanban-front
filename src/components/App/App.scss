@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .main-container {
   display: flex;
   justify-content: space-between;
@@ -5,6 +7,19 @@
   height:100vh;
   min-height:700px;
   font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.main-button {
+  color:white;
+  background-color: vars.$mainPurple;
+  border:none;
+  padding:1rem 2rem;
+  border-radius: 25px;
+}
+
+.main-button:hover {
+  background-color: vars.$mainPurpleHover;
+  transition-duration: 0.5s;
 }
 
 

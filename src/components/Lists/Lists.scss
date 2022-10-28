@@ -17,16 +17,5 @@
 
 .lists-container {
 
-    &-button {
-        color:white;
-        background-color: vars.$mainPurple;
-        border:none;
-        padding:1rem 2rem;
-        border-radius: 25px;
-    }
-
-    &-button:hover {
-        background-color: vars.$mainPurpleHover;
-        transition-duration: 0.5s;
-    }
+    
 }

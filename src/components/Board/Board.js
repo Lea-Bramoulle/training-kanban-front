@@ -24,8 +24,16 @@ function Board() {
 
   return (
     <section className="board">
-      <div className="board-title-container">
+      <div className="board-header">
         <h1 className="board-title">{boardData?.name}</h1>
+        <div className="board-header-right">
+          <button className="main-button">Add new column</button>
+          <img
+            src={require('./../../assets/images/icon-vertical-ellipsis.png')}
+            alt="board option icon"
+            className="boards-element-icon"
+          />
+        </div>
       </div>
       <div className="board-section">
         {listsOfBoardData?.length === 0 ? <ListsEmpty /> : <Lists />}
