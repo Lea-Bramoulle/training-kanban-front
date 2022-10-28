@@ -5,9 +5,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDisplayDarkMode } from './appSlice';
 
+import { useGetAllBoardsQuery } from './../../API/APIslice';
+
 function App() {
-  const count = useSelector((state) => state.app.darkMode);
+  const darkMode = useSelector((state) => state.app.darkMode);
   const dispatch = useDispatch();
+
+  const { data, error, isLoading } = useGetAllBoardsQuery();
+
+  console.log(data);
 
   return (
     <div>
@@ -16,7 +22,7 @@ function App() {
           aria-label="Increment value"
           onClick={() => dispatch(setDisplayDarkMode())}
         >
-          dark mode
+          dark mode : {darkMode ? 'true' : 'false'}
         </button>
       </div>
     </div>
