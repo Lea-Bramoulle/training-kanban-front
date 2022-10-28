@@ -9,6 +9,9 @@ import {
   useGetOneBoardQuery,
 } from './../../API/APIslice';
 
+import Lists from '../Lists/Lists';
+import ListsEmpty from '../Lists/ListsEmpty';
+
 function Board() {
   const selectedBoardId = useSelector((state) => state.app.selectedBoardId);
 
@@ -22,10 +25,10 @@ function Board() {
   return (
     <section className="board">
       <div className="board-title-container">
-        <h1 className="board-title">{boardData.name}</h1>
+        <h1 className="board-title">{boardData?.name}</h1>
       </div>
       <div className="board-section">
-        {listsOfBoardData.length === 0 ? <div>coucou</div> : ' '}
+        {listsOfBoardData?.length === 0 ? <ListsEmpty /> : <Lists />}
       </div>
     </section>
   );

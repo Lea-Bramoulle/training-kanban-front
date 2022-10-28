@@ -23,7 +23,7 @@ function App() {
       <div className="boards">
         <h2 className="boards-title">All Boards</h2>
         <ul className="boards-container">
-          {data.map((element) => (
+          {data?.map((element) => (
             <li
               key={element.id}
               className={

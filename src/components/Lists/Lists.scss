@@ -1,0 +1,32 @@
+@use 'src/styles/vars';
+
+.lists-container-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:80vh;
+    min-height:500px;
+
+    & p {
+        color: vars.$mediumGrey;
+        font-weight: bolder;
+        margin-bottom: 1rem;
+    }
+}
+
+.lists-container {
+
+    &-button {
+        color:white;
+        background-color: vars.$mainPurple;
+        border:none;
+        padding:1rem 2rem;
+        border-radius: 25px;
+    }
+
+    &-button:hover {
+        background-color: vars.$mainPurpleHover;
+        transition-duration: 0.5s;
+    }
+}
