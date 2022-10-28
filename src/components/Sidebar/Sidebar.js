@@ -9,12 +9,9 @@ import { useGetAllBoardsQuery } from './../../API/APIslice';
 function App() {
   const darkMode = useSelector((state) => state.app.darkMode);
   const selectedBoardId = useSelector((state) => state.app.selectedBoardId);
-
   const dispatch = useDispatch();
 
   const { data, error, isLoading } = useGetAllBoardsQuery();
-
-  console.log(data);
 
   return (
     <section className="sidebar">
@@ -28,6 +25,7 @@ function App() {
         <ul className="boards-container">
           {data.map((element) => (
             <li
+              key={element.id}
               className={
                 element.id === selectedBoardId
                   ? 'boards-element boards-element--active'
@@ -44,6 +42,14 @@ function App() {
             </li>
           ))}
         </ul>
+        <div className="boards-element boards-element--main">
+          <img
+            src={require('./../../assets/images/icon-board.png')}
+            alt="board icon"
+            className="boards-element-icon"
+          />
+          Create new board
+        </div>
       </div>
       <div className="darkmode-container">
         <img

@@ -1,0 +1,19 @@
+.board {
+    background-color: #F4F7FD;
+    width:80%;
+
+    &-title-container {
+        width:99%;
+        margin:0 auto;
+        padding:2rem;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-title {
+        font-size: 1.5rem;
+        font-weight: bolder;
+    }
+}

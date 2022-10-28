@@ -24,7 +24,7 @@
     }
 
     &-container {
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
 
     &-element {
@@ -36,6 +36,7 @@
         transition-duration: 0.2s;
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         &-icon {
             margin-right: 1rem;
@@ -46,13 +47,17 @@
             border-radius: 0 25px 25px 0;
             color:white;
         }
+
+        &--main {
+            color: vars.$mainPurple;
+        }
     }
   }
 
   .darkmode {
     &-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         padding: 0.5em 1.5rem ;
         background-color: vars.$lightGrey;
