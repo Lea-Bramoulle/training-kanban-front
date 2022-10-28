@@ -9,17 +9,18 @@
 
     &-logo {
         width:70%;
-        margin:0 auto;
+        margin:0 ;
     }
   }
 
   .boards {
-    height:80%;
+    height:75%;
 
     &-title {
         color: vars.$mediumGrey;
         text-transform: uppercase;
         font-weight: bolder;
+        margin-bottom: 1rem;
     }
 
     &-container {
@@ -27,10 +28,18 @@
     }
 
     &-element {
-        margin: 0.5rem 0 0.5rem -2rem;
-        padding: 0.5rem 2rem;
-        color: vars.$mediumGrey;
-        font-size: 1rem;
+        margin: 0.25rem 0 0.25rem -2rem;
+        padding: 0.75rem 2rem;
+        color: vars.$darkGrey;
+        font-size: 0.8rem;
+        font-weight: bolder;
+        transition-duration: 0.2s;
+        display: flex;
+        align-items: center;
+
+        &-icon {
+            margin-right: 1rem;
+        }
 
         &--active {
             background-color: vars.$mainPurple;

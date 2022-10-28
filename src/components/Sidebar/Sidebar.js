@@ -25,7 +25,7 @@ function App() {
       />
       <div className="boards">
         <h2 className="boards-title">All Boards</h2>
-        {/* <ul className="boards-container">
+        <ul className="boards-container">
           {data.map((element) => (
             <li
               className={
@@ -35,10 +35,15 @@ function App() {
               }
               onClick={() => dispatch(setSelectedBoardID(element.id))}
             >
+              <img
+                src={require('./../../assets/images/icon-board.png')}
+                alt="board icon"
+                className="boards-element-icon"
+              />
               {element.name}
             </li>
           ))}
-        </ul> */}
+        </ul>
       </div>
       <div className="darkmode-container">
         <img
