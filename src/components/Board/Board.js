@@ -9,11 +9,15 @@ import {
   useGetOneBoardQuery,
 } from './../../API/APIslice';
 
+import { setToggleBordOptions } from './../App/appSlice';
+
 import Lists from '../Lists/Lists';
 import ListsEmpty from '../Lists/ListsEmpty';
 
 function Board() {
-  const selectedBoardId = useSelector((state) => state.app.selectedBoardId);
+  const { selectedBoardId, toggleBordOptions } = useSelector(
+    (state) => state.app
+  );
 
   const dispatch = useDispatch();
 
@@ -27,12 +31,19 @@ function Board() {
       <div className="board-header">
         <h1 className="board-title">{boardData?.name}</h1>
         <div className="board-header-right">
-          <button className="main-button">Add new column</button>
+          <button className="main-button">Add new task</button>
           <img
             src={require('./../../assets/images/icon-vertical-ellipsis.png')}
             alt="board option icon"
             className="boards-element-icon"
+            onClick={() => dispatch(setToggleBordOptions())}
           />
+          {toggleBordOptions && (
+            <div className="board-options-container">
+              <p>Edit Board</p>
+              <p className="danger">Delete Board</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="board-section">

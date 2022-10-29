@@ -51,6 +51,18 @@
         &--main {
             color: vars.$mainPurple;
         }
+
+        & i {
+            margin-right: 0.2rem;
+            font-size: 0.8rem;
+        }
+    }
+
+    &-element:hover {
+        background-color: vars.$lightPurple;
+        color: vars.$mainPurple;
+        transition-duration: 1s;
+        border-radius: 0 25px 25px 0;
     }
   }
 

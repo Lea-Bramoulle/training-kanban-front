@@ -18,7 +18,7 @@ function Lists() {
   return (
     <div className="lists-container">
       {listsOfBoardData?.map((element) => (
-        <div className="list">
+        <div className="list" key={element.id}>
           <div className="list-header">
             <h2 className="list-title">
               <div
@@ -30,7 +30,7 @@ function Lists() {
           </div>
           <div className="tasks">
             {element.tasks.map((element) => (
-              <div className="task-container">
+              <div className="task-container" key={element.id}>
                 <p className="task-title">{element.name}</p>
                 <p className="task-subtitle">
                   {element.subtasks.filter((e) => e.is_done === true).length} of{' '}
@@ -41,6 +41,11 @@ function Lists() {
           </div>
         </div>
       ))}
+      <div className="list-new">
+        <p>
+          <i className="fa-sharp fa-solid fa-plus"></i> New Column
+        </p>
+      </div>
     </div>
   );
 }

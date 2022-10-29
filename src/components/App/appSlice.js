@@ -5,6 +5,7 @@ export const appSlice = createSlice({
   initialState: {
     darkMode: false,
     selectedBoardId: 1,
+    toggleBordOptions: false,
   },
   reducers: {
     setDisplayDarkMode: (state, action) => {
@@ -13,8 +14,12 @@ export const appSlice = createSlice({
     setSelectedBoardID: (state, action) => {
       state.selectedBoardId = action.payload;
     },
+    setToggleBordOptions: (state, action) => {
+      state.toggleBordOptions = !state.toggleBordOptions;
+    },
   },
 });
 
-export const { setDisplayDarkMode, setSelectedBoardID } = appSlice.actions;
+export const { setDisplayDarkMode, setSelectedBoardID, setToggleBordOptions } =
+  appSlice.actions;
 export default appSlice.reducer;

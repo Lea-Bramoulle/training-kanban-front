@@ -48,7 +48,7 @@ function App() {
             alt="board icon"
             className="boards-element-icon"
           />
-          Create new board
+          <i className="fa-sharp fa-solid fa-plus"></i> Create new board
         </div>
       </div>
       <div className="darkmode-container">
