@@ -16,6 +16,50 @@
 }
 
 .lists-container {
+    width: 100%;
+    margin: 1rem 0.5rem;
+    display: flex;
+    align-items:stretch;
+    overflow-x: scroll;
+}
 
-    
+.list {
+    width:25%;
+    margin: 0 0.5rem;
+    padding:2rem 1rem;
+
+    &-title {
+        display: flex;
+        font-weight: bold;
+        color: vars.$mediumGrey;
+        text-transform: uppercase;
+
+        &-bullet {
+            width:1rem;
+            height:1rem;
+            border-radius: 50px;
+            background-color: blue;
+            margin-right: 1rem;
+        }
+    }
+}
+
+.task {
+    &-container {
+        padding: 1rem 1.5rem; 
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 1rem 0;
+    }
+
+    &-title {
+        color: black;
+        font-weight: bolder;
+    }
+
+    &-subtitle {
+        color: vars.$mediumGrey;
+        font-weight: 0.8rem;
+        margin-top: 0.5rem;
+    }
 }
