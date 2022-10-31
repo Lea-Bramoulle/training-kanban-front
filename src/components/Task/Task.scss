@@ -1,4 +1,7 @@
+@use 'src/styles/vars';
+
 .task-details {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     height:100vh;
     width:100vw;
     background-color: rgba(0,0,0,0.4);
@@ -7,9 +10,129 @@
     align-items: center;
 
     &-container {
-        width:40%;
-        height:60%;
+        width:35%;
+        min-height:60%;
         margin:auto;
         background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    &-title {
+        font-size: 1.2rem;
+        font-weight: bolder;
+
+        &-section {
+            display: flex;
+            justify-content: space-between;
+            align-items:flex-start;
+            position: relative;
+        }
+    }
+
+    &-subtitle {
+        color:vars.$darkGrey;
+        font-weight: bolder;
+    }
+
+    &-desc {
+        padding:2rem 0;
+        color:vars.$mediumGrey;
+    }
+
+}
+
+.task-options-container {
+    position: absolute;
+    top:1.5rem; 
+    right:0;
+    background-color: #fff;
+    padding:  1rem 2rem 0 2rem;
+    border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 2px 8px;
+
+    & p {
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+}
+
+.subtasks {
+
+    &-container {
+        padding: 1rem 0;
+    }
+
+    &-element {
+        padding:1rem;
+        margin: 0.25rem 0;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        background-color: vars.$veryLightGrey;
+    }
+
+    &-element:hover {
+        background-color: vars.$lightPurple;
+    }
+
+    &-checkbox-true {
+        background-color: vars.$mainPurple;
+        border-radius: 4px;
+        padding: 0.25rem;
+        margin-right: 1rem;
+        color:white;
+        cursor: pointer;
+    }
+
+    &-checkbox-false {
+        background-color: #fff;
+        border-radius: 4px;
+        height:1.5rem;
+        width:1.5rem;
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+}
+
+.task-details-status {
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border: 1px solid vars.$lightGrey;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+
+    & i {
+        color: vars.$mainPurple;
+    }
+}
+
+.task-details-status:hover {
+    border: 1px solid vars.$mainPurpleHover;
+    transition-duration: 1s;
+}
+
+.task-list-option {
+    position:absolute;
+    bottom:-8rem;
+    left:0;
+    padding: 0 2rem 1rem 2rem;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 8px;
+
+    & p {
+        padding: 0.5rem 0;
+        color: vars.$mediumGrey;
+        font-weight: bolder;
+    }
+
+    & p:hover {
+        color: vars.$mainPurple;
     }
 }

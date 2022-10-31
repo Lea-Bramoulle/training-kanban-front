@@ -21,6 +21,9 @@ export const kanbanApi = createApi({
     getAllListsOfOneBoard: builder.query({
       query: (selectedBoardId) => `boards/${selectedBoardId}/lists`,
     }),
+    getOneTask: builder.query({
+      query: (selectedTaskId) => `tasks/${selectedTaskId}`,
+    }),
   }),
 });
 
@@ -28,4 +31,5 @@ export const {
   useGetAllBoardsQuery,
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
+  useGetOneTaskQuery,
 } = kanbanApi;

@@ -26,6 +26,14 @@
   color: vars.$red;
 }
 
+.text-outline {
+  text-decoration:line-through;
+}
+
+.text-medium {
+  font-weight: bold;
+}
+
 .w-100 {
   width:100%;
 }
