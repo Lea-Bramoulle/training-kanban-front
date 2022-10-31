@@ -24,6 +24,10 @@
             font-weight: bolder;
             color: vars.$mediumGrey;
             margin-left: 0.5rem;
+
+            & i {
+                padding-right: 0.5rem;
+            }
         }
     }
 
@@ -48,6 +52,10 @@
         background-color: vars.$mainPurpleHover;
         color:white;
         cursor: pointer;
+    }
+
+    &-display-button:hover {
+        background-color: vars.$mainPurple;
     }
   }
 

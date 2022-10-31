@@ -86,12 +86,9 @@ function App() {
             className="sidebar-toggle-container"
             onClick={() => dispatch(setToggleSidebar())}
           >
-            <img
-              src={require('./../../assets/images/icon-dark-theme.png')}
-              alt="toggle sidebar icon"
-              className="darkmode-icon"
-            />
-            <p>Hide sidebar</p>
+            <p>
+              <i class="fa-solid fa-eye-slash"></i>Hide sidebar
+            </p>
           </div>
         </section>
       )}
