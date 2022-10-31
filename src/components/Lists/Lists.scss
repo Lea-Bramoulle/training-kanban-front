@@ -16,16 +16,24 @@
 }
 
 .lists-container {
-    width: 100%;
-    margin: 1rem 0.5rem;
-    display: flex;
-    align-items:stretch;
-    overflow-x: scroll;
+    width: 96%;
+    margin: 1rem auto;
+    display: flex; /* [1] */
+    flex-wrap: nowrap; /* [1] */
+    overflow-x: auto; /* [1] */
+    -webkit-overflow-scrolling: touch; /* [4] */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ 
 }
 
+.list::-webkit-scrollbar {
+    display: none; 
+  }
+
 .list {
-    width:25%;
+    width:22% !important;
     padding:2rem 1rem;
+    flex: 0 0 auto; 
+
 
     &-title {
         display: flex;
@@ -45,12 +53,14 @@
     &-new {
         height:70vh;
         min-height: 300px;
-        width:22%;
+        width:20% !important;
         background-color: vars.$lightPurple;
         margin: 4rem 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex: 0 0 auto; 
+
 
         & p {
             cursor: pointer;

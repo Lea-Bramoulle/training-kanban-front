@@ -3,11 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const appSlice = createSlice({
   name: 'app',
   initialState: {
+    toggleSidebar: true,
     darkMode: false,
     selectedBoardId: 1,
     toggleBordOptions: false,
   },
   reducers: {
+    setToggleSidebar: (state, action) => {
+      state.toggleSidebar = !state.toggleSidebar;
+    },
     setDisplayDarkMode: (state, action) => {
       state.darkMode = !state.darkMode;
     },
@@ -20,6 +24,10 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setDisplayDarkMode, setSelectedBoardID, setToggleBordOptions } =
-  appSlice.actions;
+export const {
+  setDisplayDarkMode,
+  setSelectedBoardID,
+  setToggleBordOptions,
+  setToggleSidebar,
+} = appSlice.actions;
 export default appSlice.reducer;

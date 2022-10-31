@@ -1,20 +1,59 @@
 @use 'src/styles/vars';
 
 .sidebar {
-    width:20%;
+    width:100%;
+    height:100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2rem ;
+    padding: 2rem 2rem 0 2rem;
 
     &-logo {
         width:70%;
-        margin:0 ;
+        margin: 0 ;
+    }
+
+    &-toggle-container {
+        display: flex;
+        cursor: pointer;
+        margin : 2rem 2rem 2rem -2rem;
+        padding: 1rem 2rem;
+        border-radius: 0 25px 25px 0;
+
+        & p {
+            font-weight: bolder;
+            color: vars.$mediumGrey;
+            margin-left: 0.5rem;
+        }
+    }
+
+    &-toggle-container:hover {
+        background-color: vars.$lightPurple;
+        
+        & p {
+            color: vars.$mainPurple;
+        }
+    }
+
+    &-relative {
+        position: relative;
+    }
+
+    &-display-button {
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        padding: 1rem 2rem;
+        border-radius: 0 25px 25px 0;
+        background-color: vars.$mainPurpleHover;
+        color:white;
+        cursor: pointer;
     }
   }
 
   .boards {
-    height:75%;
+    height:80%;
+    margin: 4rem 0;
 
     &-title {
         color: vars.$mediumGrey;
@@ -74,7 +113,7 @@
         padding: 0.5em 1.5rem ;
         background-color: vars.$lightGrey;
         border-radius: 10px;
-        margin-bottom: 1rem;
+        margin-top: 4rem;
     }
 
     &-button {

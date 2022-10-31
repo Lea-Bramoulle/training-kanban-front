@@ -15,7 +15,7 @@ import Lists from '../Lists/Lists';
 import ListsEmpty from '../Lists/ListsEmpty';
 
 function Board() {
-  const { selectedBoardId, toggleBordOptions } = useSelector(
+  const { selectedBoardId, toggleBordOptions, toggleSidebar } = useSelector(
     (state) => state.app
   );
 
@@ -27,7 +27,7 @@ function Board() {
   console.log(listsOfBoardData);
 
   return (
-    <section className="board">
+    <section className={toggleSidebar ? 'board w-80' : 'board w-100'}>
       <div className="board-header">
         <h1 className="board-title">{boardData?.name}</h1>
         <div className="board-header-right">
