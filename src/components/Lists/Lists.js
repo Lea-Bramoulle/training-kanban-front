@@ -3,8 +3,11 @@ import './../../styles/_reset.scss';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
+
+import { setSelectedTaskID } from './../App/appSlice';
 
 function Lists() {
   const selectedBoardId = useSelector((state) => state.app.selectedBoardId);
@@ -31,7 +34,14 @@ function Lists() {
           <div className="tasks">
             {element.tasks.map((element) => (
               <div className="task-container" key={element.id}>
-                <p className="task-title">{element.name}</p>
+                <p
+                  className="task-title"
+                  onClick={() => dispatch(setSelectedTaskID(element.id))}
+                >
+                  <NavLink key={element.id} to={`task/${element.id}`}>
+                    {element.name}
+                  </NavLink>
+                </p>
                 <p className="task-subtitle">
                   {element.subtasks.filter((e) => e.is_done === true).length} of{' '}
                   {element.subtasks.length} subtasks

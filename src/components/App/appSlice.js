@@ -5,8 +5,9 @@ export const appSlice = createSlice({
   initialState: {
     toggleSidebar: true,
     darkMode: false,
-    selectedBoardId: 1,
     toggleBordOptions: false,
+    selectedBoardId: 1,
+    selectedTaskId: null,
   },
   reducers: {
     setToggleSidebar: (state, action) => {
@@ -15,11 +16,14 @@ export const appSlice = createSlice({
     setDisplayDarkMode: (state, action) => {
       state.darkMode = !state.darkMode;
     },
+    setToggleBordOptions: (state, action) => {
+      state.toggleBordOptions = !state.toggleBordOptions;
+    },
     setSelectedBoardID: (state, action) => {
       state.selectedBoardId = action.payload;
     },
-    setToggleBordOptions: (state, action) => {
-      state.toggleBordOptions = !state.toggleBordOptions;
+    setSelectedTaskID: (state, action) => {
+      state.selectedTaskId = action.payload;
     },
   },
 });
@@ -29,5 +33,6 @@ export const {
   setSelectedBoardID,
   setToggleBordOptions,
   setToggleSidebar,
+  setSelectedTaskID,
 } = appSlice.actions;
 export default appSlice.reducer;

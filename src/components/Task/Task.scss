@@ -1,0 +1,15 @@
+.task-details {
+    height:100vh;
+    width:100vw;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-container {
+        width:40%;
+        height:60%;
+        margin:auto;
+        background-color: #fff;
+    }
+}
