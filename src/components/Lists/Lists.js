@@ -4,15 +4,17 @@ import './../../styles/_reset.scss';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
 
-import { setSelectedTaskID } from './../App/appSlice';
+import { setSelectedTaskID, setToggleTaskModal } from './../App/appSlice';
 
 function Lists() {
   const selectedBoardId = useSelector((state) => state.app.selectedBoardId);
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const listsOfBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
@@ -38,9 +40,16 @@ function Lists() {
                   className="task-title"
                   onClick={() => dispatch(setSelectedTaskID(element.id))}
                 >
-                  <NavLink key={element.id} to={`task/${element.id}`}>
+                  {/* <NavLink key={element.id} to={`task/${element.id}`}>
                     {element.name}
-                  </NavLink>
+                  </NavLink> */}
+                  <Link
+                    to={`/task/${element.id}`}
+                    state={{ background: location }}
+                    onClick={() => dispatch(setToggleTaskModal())}
+                  >
+                    {element.name}
+                  </Link>
                 </p>
                 <p className="task-subtitle">
                   {element.subtasks.filter((e) => e.is_done === true).length} of{' '}
@@ -56,6 +65,7 @@ function Lists() {
           <i className="fa-sharp fa-solid fa-plus"></i> New Column
         </p>
       </div>
+      <Outlet />
     </div>
   );
 }

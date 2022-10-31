@@ -2,11 +2,14 @@ import './../App/App.scss';
 import './Task.scss';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
   setToggleTaskOptions,
   setToggleTaskStatusOptions,
+  setToggleTaskModal,
 } from './../App/appSlice';
 import {
   useGetOneTaskQuery,
@@ -14,6 +17,9 @@ import {
 } from './../../API/APIslice';
 
 function Task() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     selectedTaskId,
     toggleTaskOptions,
@@ -30,18 +36,29 @@ function Task() {
 
   console.log(selectedTask);
 
-  const dispatch = useDispatch();
-  return (
+  return ReactDOM.createPortal(
     <div className="task-details">
       <div className="task-details-container">
         <div className="task-details-title-section">
           <h2 className="task-details-title">{selectedTask?.name}</h2>
-          <img
-            src={require('./../../assets/images/icon-vertical-ellipsis.png')}
-            alt="Task option icon"
-            className="boards-element-icon"
-            onClick={() => dispatch(setToggleTaskOptions())}
-          />
+          <div>
+            <img
+              src={require('./../../assets/images/icon-vertical-ellipsis.png')}
+              alt="Task option icon"
+              className="boards-element-icon"
+              onClick={() => dispatch(setToggleTaskOptions())}
+            />
+            <img
+              src={require('./../../assets/images/icon-cross.png')}
+              alt="Task option icon"
+              className="boards-element-icon"
+              onClick={() => {
+                dispatch(setToggleTaskModal());
+                navigate(-1);
+              }}
+            />
+          </div>
+
           {toggleTaskOptions && (
             <div className="task-options-container">
               <p>Edit Board</p>
@@ -96,7 +113,8 @@ function Task() {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root')
   );
 }
 

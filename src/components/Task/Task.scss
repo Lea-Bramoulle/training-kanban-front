@@ -1,5 +1,8 @@
 @use 'src/styles/vars';
 
+.app {
+    position:relative;
+}
 .task-details {
     font-family: 'Plus Jakarta Sans', sans-serif;
     height:100vh;
@@ -8,6 +11,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position:absolute;
+    z-index: 999;
+    top:0;
+    left:0;
 
     &-container {
         width:35%;
@@ -135,4 +142,8 @@
     & p:hover {
         color: vars.$mainPurple;
     }
+}
+
+.boards-element-icon {
+    cursor:pointer;
 }
