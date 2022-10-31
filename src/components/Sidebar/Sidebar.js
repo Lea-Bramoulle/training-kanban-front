@@ -87,7 +87,7 @@ function App() {
             onClick={() => dispatch(setToggleSidebar())}
           >
             <p>
-              <i class="fa-solid fa-eye-slash"></i>Hide sidebar
+              <i class="fa-solid fa-eye-slash"></i> Hide sidebar
             </p>
           </div>
         </section>
