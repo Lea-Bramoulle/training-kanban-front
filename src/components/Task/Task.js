@@ -73,11 +73,13 @@ function Task() {
               <p>Edit Task</p>
               <p
                 className="danger"
-                onClick={() =>
+                onClick={() => {
                   deleteTask({
                     taskId: selectedTaskId,
-                  })
-                }
+                  });
+                  dispatch(setToggleTaskModal());
+                  navigate(-1);
+                }}
               >
                 Delete Task
               </p>

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Home from '../../pages/Home/home';
 import Task from '../Task/Task';
+import CreateTask from '../Task/CreateTask';
 import Sidebar from '../Sidebar/Sidebar';
 import Board from '../Board/Board';
 
@@ -21,6 +22,7 @@ function App() {
       <Routes location={background || location}>
         <Route path="/" element={<Home />}>
           <Route path="task/:id" element={<Task />} />
+          <Route path="task/create" element={<CreateTask />} />
         </Route>
         {/* <Route path="/task/:id" element={<Task />} /> */}
         {/* <Route path="*" element={<NotFound />} /> */}
@@ -29,6 +31,7 @@ function App() {
       {background && (
         <Routes>
           <Route path="task/:id" element={<Task />} />
+          <Route path="task/create" element={<Task />} />
         </Routes>
       )}
     </div>
