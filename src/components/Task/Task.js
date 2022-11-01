@@ -7,18 +7,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  setToggleTaskOptions,
-  setToggleTaskStatusOptions,
-  setToggleTaskModal,
-} from './../App/appSlice';
+  useUpdateSubtaskMutation,
+  useUpdateTaskMutation,
+  useDeleteTaskMutation,
+} from './../../API/APIslice';
+
 import {
   useGetOneTaskQuery,
   useGetAllListsOfOneBoardQuery,
 } from './../../API/APIslice';
 
+import {
+  setToggleTaskOptions,
+  setToggleTaskStatusOptions,
+  setToggleTaskModal,
+} from './../App/appSlice';
+
 function Task() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [updateSubtask] = useUpdateSubtaskMutation();
+  const [updateTask] = useUpdateTaskMutation();
+  const [deleteTask] = useDeleteTaskMutation();
 
   const {
     selectedTaskId,
@@ -31,10 +42,8 @@ function Task() {
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
   const taskCurrentList = selectedBoard?.find(
-    (element) => element.id === selectedTaskId
+    (element) => element.id === selectedTask?.list_id
   );
-
-  console.log(selectedTask);
 
   return ReactDOM.createPortal(
     <div className="task-details">
@@ -61,8 +70,17 @@ function Task() {
 
           {toggleTaskOptions && (
             <div className="task-options-container">
-              <p>Edit Board</p>
-              <p className="danger">Delete Board</p>
+              <p>Edit Task</p>
+              <p
+                className="danger"
+                onClick={() =>
+                  deleteTask({
+                    taskId: selectedTaskId,
+                  })
+                }
+              >
+                Delete Task
+              </p>
             </div>
           )}
         </div>
@@ -76,17 +94,33 @@ function Task() {
         </h3>
         <ul className="subtasks-container">
           {selectedTask?.subtasks.map((element) => (
-            <li className="subtasks-element">
+            <li className="subtasks-element" key={element.id}>
               {element.is_done ? (
                 <>
-                  <div className="subtasks-checkbox-true">
+                  <div
+                    className="subtasks-checkbox-true"
+                    onClick={() =>
+                      updateSubtask({
+                        id: element.id,
+                        is_done: !element.is_done,
+                      })
+                    }
+                  >
                     <i className="fa-solid fa-check"></i>
                   </div>
                   <p className="text-outline">{element.description}</p>
                 </>
               ) : (
                 <>
-                  <div className="subtasks-checkbox-false"></div>
+                  <div
+                    className="subtasks-checkbox-false"
+                    onClick={() =>
+                      updateSubtask({
+                        id: element?.id,
+                        is_done: !element?.is_done,
+                      })
+                    }
+                  ></div>
                   <p className="text-medium">{element.description}</p>
                 </>
               )}
@@ -106,7 +140,17 @@ function Task() {
                 {selectedBoard
                   ?.filter((element) => element.id !== selectedTask.list_id)
                   ?.map((element) => (
-                    <p key={element.id}>{element.name}</p>
+                    <p
+                      key={element.id}
+                      onClick={() =>
+                        updateTask({
+                          id: element?.id,
+                          list_id: Number(element.id),
+                        })
+                      }
+                    >
+                      {element.name}
+                    </p>
                   ))}
               </div>
             </>

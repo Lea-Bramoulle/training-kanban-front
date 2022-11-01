@@ -24,6 +24,38 @@ export const kanbanApi = createApi({
     getOneTask: builder.query({
       query: (selectedTaskId) => `tasks/${selectedTaskId}`,
     }),
+    updateSubtask: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `subtasks/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      // invalidatesTags: ["User", "Project"],
+    }),
+    updateTask: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `tasks/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      // invalidatesTags: ["User", "Project"],
+    }),
+    postTask: builder.mutation({
+      query: ({ id, techno }) => ({
+        url: `user/${id}/techno`,
+        method: 'POST',
+        body: { techno },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    deleteTask: builder.mutation({
+      query: ({ taskId, ...body }) => ({
+        url: `/tasks/${taskId}`,
+        method: 'DELETE',
+        body: body,
+      }),
+      // invalidatesTags: ["User", "Project"],
+    }),
   }),
 });
 
@@ -32,4 +64,7 @@ export const {
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
   useGetOneTaskQuery,
+  useUpdateSubtaskMutation,
+  useUpdateTaskMutation,
+  useDeleteTaskMutation,
 } = kanbanApi;
