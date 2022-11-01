@@ -9,8 +9,9 @@ export const kanbanApi = createApi({
     return headers;
   },
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+  refetchOnFocus: true,
+  tagTypes: ['Task'],
   credentials: 'include',
-
   endpoints: (builder) => ({
     getAllBoards: builder.query({
       query: () => 'boards',
@@ -30,7 +31,7 @@ export const kanbanApi = createApi({
         method: 'PATCH',
         body: patch,
       }),
-      // invalidatesTags: ["User", "Project"],
+      invalidatesTags: ['Task'],
     }),
     postSubtask: builder.mutation({
       query: (body) => ({
@@ -38,7 +39,7 @@ export const kanbanApi = createApi({
         method: 'POST',
         body,
       }),
-      //   invalidatesTags: ['User'],
+      invalidatesTags: ['Task'],
     }),
     updateTask: builder.mutation({
       query: ({ id, ...patch }) => ({
@@ -46,7 +47,7 @@ export const kanbanApi = createApi({
         method: 'PATCH',
         body: patch,
       }),
-      // invalidatesTags: ["User", "Project"],
+      invalidatesTags: ['Task'],
     }),
     postTask: builder.mutation({
       query: (body) => ({
@@ -54,7 +55,7 @@ export const kanbanApi = createApi({
         method: 'POST',
         body,
       }),
-      //   invalidatesTags: ['User'],
+      invalidatesTags: ['Task'],
     }),
     deleteTask: builder.mutation({
       query: ({ taskId, ...body }) => ({
@@ -62,7 +63,7 @@ export const kanbanApi = createApi({
         method: 'DELETE',
         body: body,
       }),
-      // invalidatesTags: ["User", "Project"],
+      invalidatesTags: ['Task'],
     }),
   }),
 });

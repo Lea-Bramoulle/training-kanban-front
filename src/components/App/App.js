@@ -1,7 +1,7 @@
 import './../../styles/_reset.scss';
 import './App.scss';
 
-import React from 'react';
+import { React, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,8 +11,11 @@ import CreateTask from '../Task/CreateTask';
 import Sidebar from '../Sidebar/Sidebar';
 import Board from '../Board/Board';
 
+import { setSubtasksData } from './appSlice';
+
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const background = location.state && location.state.background;
 
   const { toggleTaskModal } = useSelector((state) => state.app);

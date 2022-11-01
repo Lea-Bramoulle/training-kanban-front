@@ -1,7 +1,7 @@
 import './../App/App.scss';
 import './Task.scss';
 
-import React from 'react';
+import { React, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -45,20 +45,23 @@ function Task() {
   const selectedTask = useGetOneTaskQuery(selectedTaskId).data;
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
+  const selectedTaskQuery = useGetOneTaskQuery(selectedTaskId);
+
   const taskCurrentList = selectedBoard?.find(
     (element) => element.id === selectedTask?.list_id
   );
 
-  const postNewSubtask = (e) => {
+  const postNewSubtask = async (e) => {
     e.preventDefault();
     console.log(e.target.description.value);
-    postSubtask({
+    await postSubtask({
       description: e.target.description.value,
       is_done: false,
       task_id: Number(selectedTaskId),
     })
       .unwrap()
       .then((data) => {
+        selectedTaskQuery.refetch();
         console.log(data);
       });
   };

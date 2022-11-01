@@ -31,6 +31,7 @@ function CreateTask() {
   const [postTask] = usePostTaskMutation();
 
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
+  const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
   const postNewProject = (e) => {
     e.preventDefault();
@@ -44,6 +45,7 @@ function CreateTask() {
       .unwrap()
       .then((data) => {
         console.log(data);
+        selectedBoardQuery.refetch();
         dispatch(setToggleTaskModal());
         navigate(-1);
       });
