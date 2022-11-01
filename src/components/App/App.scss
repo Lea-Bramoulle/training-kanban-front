@@ -30,6 +30,29 @@
   border-radius: 25px;
   border:none;
   margin-top: 2rem;
+  font-weight: bolder;
+
+}
+
+.button-submit-secondary {
+  width:100%;
+  padding: 1rem;
+  background-color: vars.$mainPurpleHover;
+  color:white;
+  border-radius: 25px;
+  border:none;
+  margin-bottom: 2rem;
+  font-weight: bolder;
+}
+
+.button-submit:hover {
+  background-color: vars.$mainPurpleHover;
+  transition-duration: 1s;
+}
+
+.button-submit-secondary:hover {
+  background-color: vars.$mainPurple;
+  transition-duration: 1s;
 }
 
 .danger {

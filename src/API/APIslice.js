@@ -32,6 +32,14 @@ export const kanbanApi = createApi({
       }),
       // invalidatesTags: ["User", "Project"],
     }),
+    postSubtask: builder.mutation({
+      query: (body) => ({
+        url: `subtasks`,
+        method: 'POST',
+        body,
+      }),
+      //   invalidatesTags: ['User'],
+    }),
     updateTask: builder.mutation({
       query: ({ id, ...patch }) => ({
         url: `tasks/${id}`,
@@ -65,6 +73,7 @@ export const {
   useGetOneBoardQuery,
   useGetOneTaskQuery,
   useUpdateSubtaskMutation,
+  usePostSubtaskMutation,
   useUpdateTaskMutation,
   usePostTaskMutation,
   useDeleteTaskMutation,

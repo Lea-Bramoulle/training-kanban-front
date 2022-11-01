@@ -44,8 +44,8 @@ function CreateTask() {
       .unwrap()
       .then((data) => {
         console.log(data);
-        // dispatch(handleChange({ name: "projectId", value: data }));
-        // dispatch(setActiveForm("technologies"));
+        dispatch(setToggleTaskModal());
+        navigate(-1);
       });
   };
 

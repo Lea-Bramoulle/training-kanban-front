@@ -14,6 +14,7 @@ export const appSlice = createSlice({
     taskTitleValue: '',
     taskDescriptionValue: '',
     taskListIdValue: null,
+    subtaskDescriptionValue: '',
   },
   reducers: {
     setToggleSidebar: (state, action) => {
@@ -49,6 +50,9 @@ export const appSlice = createSlice({
     setTaskListIdValue: (state, action) => {
       state.taskListIdValue = action.payload;
     },
+    setSubtaskDescriptionValue: (state, action) => {
+      state.subtaskDescriptionValue = action.payload;
+    },
   },
 });
 
@@ -64,5 +68,6 @@ export const {
   setTaskTitleValue,
   setTaskDescriptionValue,
   setTaskListIdValue,
+  setSubtaskDescriptionValue,
 } = appSlice.actions;
 export default appSlice.reducer;

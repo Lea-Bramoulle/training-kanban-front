@@ -10,6 +10,7 @@ import {
   useUpdateSubtaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,
+  usePostSubtaskMutation,
 } from './../../API/APIslice';
 
 import {
@@ -21,6 +22,7 @@ import {
   setToggleTaskOptions,
   setToggleTaskStatusOptions,
   setToggleTaskModal,
+  setSubtaskDescriptionValue,
 } from './../App/appSlice';
 
 function Task() {
@@ -28,6 +30,7 @@ function Task() {
   const dispatch = useDispatch();
 
   const [updateSubtask] = useUpdateSubtaskMutation();
+  const [postSubtask] = usePostSubtaskMutation();
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
 
@@ -36,6 +39,7 @@ function Task() {
     toggleTaskOptions,
     selectedBoardId,
     toggleTaskStatusOptions,
+    subtaskDescriptionValue,
   } = useSelector((state) => state.app);
 
   const selectedTask = useGetOneTaskQuery(selectedTaskId).data;
@@ -44,6 +48,20 @@ function Task() {
   const taskCurrentList = selectedBoard?.find(
     (element) => element.id === selectedTask?.list_id
   );
+
+  const postNewSubtask = (e) => {
+    e.preventDefault();
+    console.log(e.target.description.value);
+    postSubtask({
+      description: e.target.description.value,
+      is_done: false,
+      task_id: Number(selectedTaskId),
+    })
+      .unwrap()
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return ReactDOM.createPortal(
     <div className="task-details">
@@ -129,6 +147,23 @@ function Task() {
             </li>
           ))}
         </ul>
+        <form className="subtasks-form" onSubmit={postNewSubtask}>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            className="task-create-input"
+            placeholder="e.g. Drink the & smile"
+            style={{ width: '100%', marginTop: '-2rem' }}
+            value={subtaskDescriptionValue}
+            onChange={(e) => {
+              dispatch(setSubtaskDescriptionValue(e.target.value));
+            }}
+          />
+          <button type="submit" className="button-submit-secondary">
+            Add new subtask
+          </button>
+        </form>
         <h3 className="task-details-subtitle">Current status</h3>
         <div
           className="task-details-status"
