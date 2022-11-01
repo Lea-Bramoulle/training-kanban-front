@@ -41,12 +41,12 @@ export const kanbanApi = createApi({
       // invalidatesTags: ["User", "Project"],
     }),
     postTask: builder.mutation({
-      query: ({ id, techno }) => ({
-        url: `user/${id}/techno`,
+      query: (body) => ({
+        url: `tasks`,
         method: 'POST',
-        body: { techno },
+        body,
       }),
-      invalidatesTags: ['User'],
+      //   invalidatesTags: ['User'],
     }),
     deleteTask: builder.mutation({
       query: ({ taskId, ...body }) => ({
@@ -66,5 +66,6 @@ export const {
   useGetOneTaskQuery,
   useUpdateSubtaskMutation,
   useUpdateTaskMutation,
+  usePostTaskMutation,
   useDeleteTaskMutation,
 } = kanbanApi;

@@ -31,7 +31,7 @@ function App() {
       {background && (
         <Routes>
           <Route path="task/:id" element={<Task />} />
-          <Route path="task/create" element={<Task />} />
+          <Route path="task/create" element={<CreateTask />} />
         </Routes>
       )}
     </div>

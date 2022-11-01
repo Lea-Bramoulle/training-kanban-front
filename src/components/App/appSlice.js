@@ -11,6 +11,9 @@ export const appSlice = createSlice({
     selectedBoardId: 1,
     selectedTaskId: null,
     toggleTaskModal: false,
+    taskTitleValue: '',
+    taskDescriptionValue: '',
+    taskListIdValue: null,
   },
   reducers: {
     setToggleSidebar: (state, action) => {
@@ -37,6 +40,15 @@ export const appSlice = createSlice({
     setToggleTaskModal: (state, action) => {
       state.toggleTaskModal = !state.toggleTaskModal;
     },
+    setTaskTitleValue: (state, action) => {
+      state.taskTitleValue = action.payload;
+    },
+    setTaskDescriptionValue: (state, action) => {
+      state.taskDescriptionValue = action.payload;
+    },
+    setTaskListIdValue: (state, action) => {
+      state.taskListIdValue = action.payload;
+    },
   },
 });
 
@@ -49,5 +61,8 @@ export const {
   setToggleTaskOptions,
   setToggleTaskStatusOptions,
   setToggleTaskModal,
+  setTaskTitleValue,
+  setTaskDescriptionValue,
+  setTaskListIdValue,
 } = appSlice.actions;
 export default appSlice.reducer;
