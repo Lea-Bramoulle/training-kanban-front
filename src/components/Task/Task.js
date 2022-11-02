@@ -62,20 +62,36 @@ function Task() {
     })
       .unwrap()
       .then((data) => {
+        dispatch(setSubtaskDescriptionValue(''));
         selectedTaskQuery.refetch();
         console.log(data);
       });
   };
 
-  const handleUpdateTask = (element) => {
+  const handleUpdateSubtaskStatus = (id, is_done) => {
     updateSubtask({
-      id: element.id,
-      is_done: !element.is_done,
+      id,
+      is_done,
     })
       .unwrap()
       .then((data) => {
-        selectedTaskQuery.refetch();
         console.log(data);
+        selectedTaskQuery.refetch();
+      });
+  };
+
+  const handleUpdateTaskStatus = (id, list_id) => {
+    console.log(list_id);
+    updateTask({
+      id,
+      list_id,
+    })
+      .unwrap()
+      .then((data) => {
+        console.log(data);
+        selectedBoardQuery.refetch();
+        dispatch(setToggleTaskModal());
+        navigate(-1);
       });
   };
 
@@ -142,7 +158,7 @@ function Task() {
                   <div
                     className="subtasks-checkbox-true"
                     onClick={() => {
-                      handleUpdateTask(element);
+                      handleUpdateSubtaskStatus(element.id, !element.is_done);
                     }}
                   >
                     <i className="fa-solid fa-check"></i>
@@ -153,12 +169,9 @@ function Task() {
                 <>
                   <div
                     className="subtasks-checkbox-false"
-                    onClick={() =>
-                      updateSubtask({
-                        id: element?.id,
-                        is_done: !element?.is_done,
-                      })
-                    }
+                    onClick={() => {
+                      handleUpdateSubtaskStatus(element.id, !element.is_done);
+                    }}
                   ></div>
                   <p className="text-medium">{element.description}</p>
                 </>
@@ -199,10 +212,10 @@ function Task() {
                     <p
                       key={element.id}
                       onClick={() =>
-                        updateTask({
-                          id: element?.id,
-                          list_id: Number(element.id),
-                        })
+                        handleUpdateTaskStatus(
+                          Number(selectedTask.id),
+                          Number(element.id)
+                        )
                       }
                     >
                       {element.name}

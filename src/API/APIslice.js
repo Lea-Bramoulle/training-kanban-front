@@ -9,7 +9,7 @@ export const kanbanApi = createApi({
   },
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
   refetchOnFocus: true,
-  tagTypes: ['Task'],
+  tagTypes: ['Task', 'Subtask'],
   credentials: 'include',
   endpoints: (builder) => ({
     getAllBoards: builder.query({
@@ -30,7 +30,7 @@ export const kanbanApi = createApi({
         method: 'PATCH',
         body: patch,
       }),
-      invalidatesTags: ['Task'],
+      invalidatesTags: ['Subtask'],
     }),
     postSubtask: builder.mutation({
       query: (body) => ({
