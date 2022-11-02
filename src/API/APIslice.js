@@ -5,7 +5,6 @@ export const kanbanApi = createApi({
   reducerPath: 'kanbanApi',
   prepareHeaders: (headers) => {
     headers.set('Access-Control-Allow-Origin', '*');
-    console.log(headers);
     return headers;
   },
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
@@ -58,10 +57,9 @@ export const kanbanApi = createApi({
       invalidatesTags: ['Task'],
     }),
     deleteTask: builder.mutation({
-      query: ({ taskId, ...body }) => ({
+      query: (taskId) => ({
         url: `/tasks/${taskId}`,
         method: 'DELETE',
-        body: body,
       }),
       invalidatesTags: ['Task'],
     }),

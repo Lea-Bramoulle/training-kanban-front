@@ -46,15 +46,16 @@ function Task() {
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
   const selectedTaskQuery = useGetOneTaskQuery(selectedTaskId);
+  const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
   const taskCurrentList = selectedBoard?.find(
     (element) => element.id === selectedTask?.list_id
   );
 
-  const postNewSubtask = async (e) => {
+  const postNewSubtask = (e) => {
     e.preventDefault();
     console.log(e.target.description.value);
-    await postSubtask({
+    postSubtask({
       description: e.target.description.value,
       is_done: false,
       task_id: Number(selectedTaskId),
@@ -63,6 +64,28 @@ function Task() {
       .then((data) => {
         selectedTaskQuery.refetch();
         console.log(data);
+      });
+  };
+
+  const handleUpdateTask = (element) => {
+    updateSubtask({
+      id: element.id,
+      is_done: !element.is_done,
+    })
+      .unwrap()
+      .then((data) => {
+        selectedTaskQuery.refetch();
+        console.log(data);
+      });
+  };
+
+  const handleDeleteTask = () => {
+    deleteTask(selectedTaskId)
+      .unwrap()
+      .then(() => {
+        selectedBoardQuery.refetch();
+        dispatch(setToggleTaskModal());
+        navigate(-1);
       });
   };
 
@@ -95,11 +118,7 @@ function Task() {
               <p
                 className="danger"
                 onClick={() => {
-                  deleteTask({
-                    taskId: selectedTaskId,
-                  });
-                  dispatch(setToggleTaskModal());
-                  navigate(-1);
+                  handleDeleteTask();
                 }}
               >
                 Delete Task
@@ -122,12 +141,9 @@ function Task() {
                 <>
                   <div
                     className="subtasks-checkbox-true"
-                    onClick={() =>
-                      updateSubtask({
-                        id: element.id,
-                        is_done: !element.is_done,
-                      })
-                    }
+                    onClick={() => {
+                      handleUpdateTask(element);
+                    }}
                   >
                     <i className="fa-solid fa-check"></i>
                   </div>

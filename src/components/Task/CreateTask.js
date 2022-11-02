@@ -33,7 +33,7 @@ function CreateTask() {
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
   const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
-  const postNewProject = (e) => {
+  const postNewTask = (e) => {
     e.preventDefault();
     console.log(e.target.status.value);
     postTask({
@@ -69,7 +69,7 @@ function CreateTask() {
           </div>
         </div>
 
-        <form className="task-create-form" onSubmit={postNewProject}>
+        <form className="task-create-form" onSubmit={postNewTask}>
           <label for="name" className="task-details-subtitle">
             Title
           </label>
