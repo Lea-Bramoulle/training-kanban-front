@@ -82,11 +82,14 @@
     display: flex; /* [1] */
     flex-direction: column;
     flex-wrap: nowrap; /* [1] */
-    overflow-x: auto; /* [1] */
     overflow-y: auto; /* [1] */
     -webkit-overflow-scrolling: touch; /* [4] */
     -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ 
 }
+
+.tasks::-webkit-scrollbar {
+    display: none; 
+  }
 
 .task {
     &-container {
@@ -95,6 +98,7 @@
         border-radius: 6px;
         margin: 0.5rem 1rem 0.5rem 0;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 2px 8px;
+        flex: 0 0 auto; 
     }
 
     &-title {
