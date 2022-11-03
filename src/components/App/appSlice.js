@@ -12,9 +12,11 @@ export const appSlice = createSlice({
     selectedTaskId: null,
     toggleTaskModal: false,
     taskTitleValue: '',
+    listTitleValue: '',
     taskDescriptionValue: '',
     taskListIdValue: null,
     subtaskDescriptionValue: '',
+    colorPickerValue: '#635FC7',
   },
   reducers: {
     setToggleSidebar: (state, action) => {
@@ -53,6 +55,12 @@ export const appSlice = createSlice({
     setSubtaskDescriptionValue: (state, action) => {
       state.subtaskDescriptionValue = action.payload;
     },
+    setListTitleValue: (state, action) => {
+      state.listTitleValue = action.payload;
+    },
+    setColorPickerValue: (state, action) => {
+      state.colorPickerValue = action.payload;
+    },
   },
 });
 
@@ -69,5 +77,7 @@ export const {
   setTaskDescriptionValue,
   setTaskListIdValue,
   setSubtaskDescriptionValue,
+  setListTitleValue,
+  setColorPickerValue,
 } = appSlice.actions;
 export default appSlice.reducer;

@@ -35,7 +35,7 @@ function Lists() {
             <h2 className="list-title">
               <div
                 className="list-title-bullet"
-                style={{ backgroundColor: `#${element.color}` }}
+                style={{ backgroundColor: `${element.color}` }}
               ></div>
               {element.name} ( {element.tasks.length} )
             </h2>

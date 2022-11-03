@@ -6,27 +6,25 @@ import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { TwitterPicker } from 'react-color';
+
 import { usePostListMutation } from './../../API/APIslice';
 
 import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
 
 import {
   setToggleTaskModal,
-  setTaskTitleValue,
-  setTaskDescriptionValue,
-  setTaskListIdValue,
+  setListTitleValue,
+  setColorPickerValue,
 } from './../App/appSlice';
 
 function CreateTask() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {
-    selectedBoardId,
-    taskTitleValue,
-    taskDescriptionValue,
-    taskListIdValue,
-  } = useSelector((state) => state.app);
+  const { selectedBoardId, listTitleValue, colorPickerValue } = useSelector(
+    (state) => state.app
+  );
 
   const selectedBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
   const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
@@ -38,7 +36,7 @@ function CreateTask() {
 
     postList({
       name: e.target.name.value,
-      color: e.target.color.value,
+      color: colorPickerValue,
       board_id: Number(selectedBoardId),
     })
       .unwrap()
@@ -48,6 +46,10 @@ function CreateTask() {
         dispatch(setToggleTaskModal());
         navigate(-1);
       });
+  };
+
+  const handleChangeColorValue = (color) => {
+    dispatch(setColorPickerValue(color.hex));
   };
 
   return ReactDOM.createPortal(
@@ -77,24 +79,18 @@ function CreateTask() {
             name="name"
             id="name"
             className="task-create-input"
-            value={taskTitleValue}
+            value={listTitleValue}
             onChange={(e) => {
-              dispatch(setTaskTitleValue(e.target.value));
+              dispatch(setListTitleValue(e.target.value));
             }}
           />
 
           <label for="description" className="task-details-subtitle">
             List color :
           </label>
-          <input
-            type="text"
-            name="color"
-            id="color"
-            className="task-create-input"
-            value={taskTitleValue}
-            onChange={(e) => {
-              dispatch(setTaskTitleValue(e.target.value));
-            }}
+          <TwitterPicker
+            onChangeComplete={handleChangeColorValue}
+            color={colorPickerValue}
           />
           <button type="submit" className="button-submit">
             Create Task
