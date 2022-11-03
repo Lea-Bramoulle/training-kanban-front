@@ -79,6 +79,7 @@ function CreateTask() {
             type="text"
             name="name"
             id="name"
+            placeholder="e.g. Drink coffee & smile"
             className="task-create-input"
             value={taskTitleValue}
             onChange={(e) => {
@@ -93,6 +94,8 @@ function CreateTask() {
             id="description"
             name="description"
             rows="6"
+            placeholder="e.g. It’s always good to take a break. This 15 minute break will 
+            recharge the batteries a little."
             className="task-create-input"
             value={taskDescriptionValue}
             onChange={(e) => {

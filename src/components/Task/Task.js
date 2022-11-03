@@ -64,7 +64,6 @@ function Task() {
       .unwrap()
       .then((data) => {
         dispatch(setSubtaskDescriptionValue(''));
-        dispatch(setSelectedBoardID(null));
         selectedTaskQuery.refetch();
         console.log(data);
       });
@@ -102,6 +101,7 @@ function Task() {
       .unwrap()
       .then(() => {
         selectedBoardQuery.refetch();
+        dispatch(setToggleTaskOptions(false));
         dispatch(setToggleTaskModal());
         navigate(-1);
       });

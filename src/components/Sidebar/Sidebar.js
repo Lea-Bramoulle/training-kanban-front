@@ -2,20 +2,24 @@ import './Sidebar.scss';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 import {
   setDisplayDarkMode,
   setSelectedBoardID,
   setToggleSidebar,
+  setToggleTaskModal,
 } from './../App/appSlice';
 
 import { useGetAllBoardsQuery } from './../../API/APIslice';
 
 function App() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
     (state) => state.app
   );
-  const dispatch = useDispatch();
-
   const { data, error, isLoading } = useGetAllBoardsQuery();
 
   return (
@@ -55,7 +59,13 @@ function App() {
                 alt="board icon"
                 className="boards-element-icon"
               />
-              <i className="fa-sharp fa-solid fa-plus"></i> Create new board
+              <Link
+                to={`/board/create`}
+                state={{ background: location }}
+                onClick={() => dispatch(setToggleTaskModal())}
+              >
+                <i className="fa-sharp fa-solid fa-plus"></i> Create new board
+              </Link>
             </div>
           </div>
           <div className="darkmode-container">
