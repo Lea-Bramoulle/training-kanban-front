@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Home from '../../pages/Home/home';
 import Task from '../Task/Task';
 import CreateTask from '../Task/CreateTask';
-import Sidebar from '../Sidebar/Sidebar';
-import Board from '../Board/Board';
+import CreateList from '../Lists/CreateList';
 
 import { setSubtasksData } from './appSlice';
 
@@ -26,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
+          <Route path="list/create" element={<CreateList />} />
         </Route>
         {/* <Route path="/task/:id" element={<Task />} /> */}
         {/* <Route path="*" element={<NotFound />} /> */}
@@ -35,6 +35,7 @@ function App() {
         <Routes>
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
+          <Route path="list/create" element={<CreateList />} />
         </Routes>
       )}
     </div>

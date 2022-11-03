@@ -122,6 +122,7 @@ function Task() {
               alt="Task option icon"
               className="boards-element-icon"
               onClick={() => {
+                selectedBoardQuery.refetch();
                 dispatch(setToggleTaskModal());
                 navigate(-1);
               }}

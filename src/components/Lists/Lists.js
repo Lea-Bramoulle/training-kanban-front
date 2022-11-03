@@ -6,7 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
+import {
+  useGetAllListsOfOneBoardQuery,
+  usePostListMutation,
+} from './../../API/APIslice';
 
 import {
   setSelectedTaskID,
@@ -63,7 +66,13 @@ function Lists() {
       ))}
       <div className="list-new">
         <p>
-          <i className="fa-sharp fa-solid fa-plus"></i> New Column
+          <Link
+            to={`/list/create`}
+            state={{ background: location }}
+            onClick={() => dispatch(setToggleTaskModal())}
+          >
+            <i className="fa-sharp fa-solid fa-plus"></i> New Column
+          </Link>
         </p>
       </div>
       <Outlet />

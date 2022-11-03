@@ -24,17 +24,9 @@ export const kanbanApi = createApi({
     getOneTask: builder.query({
       query: (selectedTaskId) => `tasks/${selectedTaskId}`,
     }),
-    updateSubtask: builder.mutation({
-      query: ({ id, ...patch }) => ({
-        url: `subtasks/${id}`,
-        method: 'PATCH',
-        body: patch,
-      }),
-      invalidatesTags: ['Subtask'],
-    }),
-    postSubtask: builder.mutation({
+    postTask: builder.mutation({
       query: (body) => ({
-        url: `subtasks`,
+        url: `tasks`,
         method: 'POST',
         body,
       }),
@@ -48,18 +40,34 @@ export const kanbanApi = createApi({
       }),
       invalidatesTags: ['Task'],
     }),
-    postTask: builder.mutation({
+    deleteTask: builder.mutation({
+      query: (taskId) => ({
+        url: `/tasks/${taskId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Task'],
+    }),
+    postSubtask: builder.mutation({
       query: (body) => ({
-        url: `tasks`,
+        url: `subtasks`,
         method: 'POST',
         body,
       }),
       invalidatesTags: ['Task'],
     }),
-    deleteTask: builder.mutation({
-      query: (taskId) => ({
-        url: `/tasks/${taskId}`,
-        method: 'DELETE',
+    updateSubtask: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `subtasks/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      invalidatesTags: ['Subtask'],
+    }),
+    postList: builder.mutation({
+      query: (body) => ({
+        url: `lists`,
+        method: 'POST',
+        body,
       }),
       invalidatesTags: ['Task'],
     }),
@@ -71,9 +79,10 @@ export const {
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
   useGetOneTaskQuery,
-  useUpdateSubtaskMutation,
-  usePostSubtaskMutation,
-  useUpdateTaskMutation,
   usePostTaskMutation,
+  useUpdateTaskMutation,
   useDeleteTaskMutation,
+  usePostSubtaskMutation,
+  useUpdateSubtaskMutation,
+  usePostListMutation,
 } = kanbanApi;
