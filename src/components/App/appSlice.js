@@ -8,7 +8,7 @@ export const appSlice = createSlice({
     toggleBordOptions: false,
     toggleTaskOptions: false,
     toggleTaskStatusOptions: false,
-    selectedBoardId: 1,
+    selectedBoardId: null,
     selectedTaskId: null,
     toggleTaskModal: false,
     taskTitleValue: '',

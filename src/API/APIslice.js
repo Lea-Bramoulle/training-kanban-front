@@ -9,7 +9,7 @@ export const kanbanApi = createApi({
   },
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
   refetchOnFocus: true,
-  tagTypes: ['Task', 'Subtask'],
+  tagTypes: ['Task', 'Subtask', 'Board'],
   credentials: 'include',
   endpoints: (builder) => ({
     getAllBoards: builder.query({
@@ -17,6 +17,13 @@ export const kanbanApi = createApi({
     }),
     getOneBoard: builder.query({
       query: (selectedBoardId) => `boards/${selectedBoardId}`,
+    }),
+    deleteBoard: builder.mutation({
+      query: (boardId) => ({
+        url: `/boards/${boardId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Board'],
     }),
     getAllListsOfOneBoard: builder.query({
       query: (selectedBoardId) => `boards/${selectedBoardId}/lists`,
@@ -78,6 +85,7 @@ export const {
   useGetAllBoardsQuery,
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
+  useDeleteBoardMutation,
   useGetOneTaskQuery,
   usePostTaskMutation,
   useUpdateTaskMutation,

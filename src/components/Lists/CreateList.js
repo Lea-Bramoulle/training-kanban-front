@@ -93,9 +93,10 @@ function CreateTask() {
           <TwitterPicker
             onChangeComplete={handleChangeColorValue}
             color={colorPickerValue}
+            className="twitter-picker"
           />
           <button type="submit" className="button-submit">
-            Create Task
+            Create List
           </button>
         </form>
       </div>

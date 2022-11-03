@@ -23,6 +23,7 @@ import {
   setToggleTaskStatusOptions,
   setToggleTaskModal,
   setSubtaskDescriptionValue,
+  setSelectedBoardID,
 } from './../App/appSlice';
 
 function Task() {
@@ -63,6 +64,7 @@ function Task() {
       .unwrap()
       .then((data) => {
         dispatch(setSubtaskDescriptionValue(''));
+        dispatch(setSelectedBoardID(null));
         selectedTaskQuery.refetch();
         console.log(data);
       });
