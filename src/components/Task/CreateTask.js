@@ -14,7 +14,6 @@ import {
   setToggleTaskModal,
   setTaskTitleValue,
   setTaskDescriptionValue,
-  setTaskListIdValue,
 } from './../App/appSlice';
 
 import getObjectMinId from '../../utils/getObjectMinId';
@@ -46,6 +45,8 @@ function CreateTask() {
       .unwrap()
       .then((data) => {
         console.log(data);
+        dispatch(setTaskTitleValue(''));
+        dispatch(setTaskDescriptionValue(''));
         selectedBoardQuery.refetch();
         dispatch(setToggleTaskModal());
         navigate(-1);

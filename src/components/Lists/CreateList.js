@@ -42,6 +42,8 @@ function CreateTask() {
       .unwrap()
       .then((data) => {
         console.log(data);
+        dispatch(setListTitleValue(''));
+        dispatch(setColorPickerValue('#635FC7'));
         selectedBoardQuery.refetch();
         dispatch(setToggleTaskModal());
         navigate(-1);

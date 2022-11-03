@@ -33,14 +33,26 @@ function Board() {
       <div className="board-header">
         <h1 className="board-title">{boardData?.name}</h1>
         <div className="board-header-right">
-          <Link
-            to={`/task/create`}
-            state={{ background: location }}
-            onClick={() => dispatch(setToggleTaskModal())}
-            className="main-button"
-          >
-            Add New Task
-          </Link>
+          {listsOfBoardData?.length === 0 ? (
+            <Link
+              to={`/list/create`}
+              state={{ background: location }}
+              onClick={() => dispatch(setToggleTaskModal())}
+              className="main-button"
+            >
+              <i className="fa-sharp fa-solid fa-plus"></i> Add New List
+            </Link>
+          ) : (
+            <Link
+              to={`/task/create`}
+              state={{ background: location }}
+              onClick={() => dispatch(setToggleTaskModal())}
+              className="main-button"
+            >
+              <i className="fa-sharp fa-solid fa-plus"></i> Add New Task
+            </Link>
+          )}
+
           <img
             src={require('./../../assets/images/icon-vertical-ellipsis.png')}
             alt="board option icon"
