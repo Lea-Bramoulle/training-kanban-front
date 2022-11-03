@@ -18,6 +18,14 @@ export const kanbanApi = createApi({
     getOneBoard: builder.query({
       query: (selectedBoardId) => `boards/${selectedBoardId}`,
     }),
+    postBoard: builder.mutation({
+      query: (body) => ({
+        url: `boards`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Board'],
+    }),
     deleteBoard: builder.mutation({
       query: (boardId) => ({
         url: `/boards/${boardId}`,
@@ -85,6 +93,7 @@ export const {
   useGetAllBoardsQuery,
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
+  usePostBoardMutation,
   useDeleteBoardMutation,
   useGetOneTaskQuery,
   usePostTaskMutation,

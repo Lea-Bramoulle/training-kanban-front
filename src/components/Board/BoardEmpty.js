@@ -1,4 +1,4 @@
-import './Lists.scss';
+import './Board.scss';
 import './../../styles/_reset.scss';
 
 import React from 'react';
@@ -9,23 +9,23 @@ import { setToggleTaskModal } from './../App/appSlice';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-function ListsEmpty() {
+function BoardEmpty() {
   const dispatch = useDispatch();
   const location = useLocation();
 
   return (
-    <div className="lists-container-empty">
-      <p>This board is empty. Create a new column to get started.</p>
+    <div className="board-container-empty">
+      <p>Create a new Board to get started.</p>
       <Link
-        to={`/list/create`}
+        to={`/board/create`}
         state={{ background: location }}
         onClick={() => dispatch(setToggleTaskModal())}
         className="main-button"
       >
-        <i className="fa-sharp fa-solid fa-plus"></i> Add new column
+        <i className="fa-sharp fa-solid fa-plus"></i> Add new Board
       </Link>
     </div>
   );
 }
 
-export default ListsEmpty;
+export default BoardEmpty;

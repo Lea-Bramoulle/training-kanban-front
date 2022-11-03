@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Sidebar from './../../components/Sidebar/Sidebar';
 import Board from '../../components/Board/Board';
+import BoardEmpty from '../../components/Board/BoardEmpty';
 
 function Home() {
   const { selectedBoardId, toggleBordOptions, toggleSidebar } = useSelector(
@@ -15,7 +16,7 @@ function Home() {
   return (
     <div className="main-container">
       <Sidebar />
-      {selectedBoardId ? <Board /> : ''}
+      {selectedBoardId ? <Board /> : <BoardEmpty />}
     </div>
   );
 }

@@ -11,6 +11,7 @@ export const appSlice = createSlice({
     selectedBoardId: null,
     selectedTaskId: null,
     toggleTaskModal: false,
+    setBoardTitleValue: '',
     taskTitleValue: '',
     listTitleValue: '',
     taskDescriptionValue: '',
@@ -36,6 +37,9 @@ export const appSlice = createSlice({
     },
     setSelectedBoardID: (state, action) => {
       state.selectedBoardId = action.payload;
+    },
+    setBoardTitleValue: (state, action) => {
+      state.boardTitleValue = action.payload;
     },
     setSelectedTaskID: (state, action) => {
       state.selectedTaskId = action.payload;
@@ -67,6 +71,7 @@ export const appSlice = createSlice({
 export const {
   setDisplayDarkMode,
   setSelectedBoardID,
+  setBoardTitleValue,
   setToggleBordOptions,
   setToggleSidebar,
   setSelectedTaskID,

@@ -9,8 +9,7 @@ import Home from '../../pages/Home/home';
 import Task from '../Task/Task';
 import CreateTask from '../Task/CreateTask';
 import CreateList from '../Lists/CreateList';
-
-import { setSubtasksData } from './appSlice';
+import CreateBoard from '../Board/CreateBoard';
 
 function App() {
   const location = useLocation();
@@ -26,9 +25,8 @@ function App() {
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
           <Route path="list/create" element={<CreateList />} />
+          <Route path="board/create" element={<CreateBoard />} />
         </Route>
-        {/* <Route path="/task/:id" element={<Task />} /> */}
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
 
       {background && (
@@ -36,6 +34,7 @@ function App() {
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
           <Route path="list/create" element={<CreateList />} />
+          <Route path="board/create" element={<CreateBoard />} />
         </Routes>
       )}
     </div>
