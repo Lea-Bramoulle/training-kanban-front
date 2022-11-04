@@ -35,8 +35,9 @@ function UpdateBoard() {
   const [updateList] = useUpdateListMutation();
 
   const boardsDataQuery = useGetAllBoardsQuery();
-  const boardDataQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
+  const boardDataQuery = useGetOneBoardQuery(selectedBoardId);
   const boardDataData = useGetOneBoardQuery(selectedBoardId).data;
+  const boardListsDataQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
   const selectedBoardWithListsData =
     useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
@@ -51,7 +52,6 @@ function UpdateBoard() {
       name: value,
     };
 
-    console.log(newListsNameValues);
     setListsNameValues(newListsNameValues);
   };
 
@@ -62,15 +62,14 @@ function UpdateBoard() {
       const ListInStateValue = listsNameValues.find((i) => i.id === element.id);
 
       if (ListInStateValue.name !== element.name) {
-        console.log('list a du se modif');
         updateList({
           id: element.id,
           name: ListInStateValue.name,
         })
           .unwrap()
           .then((data) => {
-            console.log(data);
-            boardDataQuery.refetch();
+            boardListsDataQuery.refetch();
+            boardsDataQuery.refetch();
           });
       }
     });
@@ -86,6 +85,7 @@ function UpdateBoard() {
         dispatch(setSelectedBoardID(data.id));
         dispatch(setToggleBordOptions());
         boardsDataQuery.refetch();
+        boardListsDataQuery.refetch();
         boardDataQuery.refetch();
         dispatch(setToggleTaskModal());
         navigate(-1);
@@ -126,7 +126,7 @@ function UpdateBoard() {
               dispatch(setBoardTitleValue(e.target.value));
             }}
           />
-          Board Columns :{/* <form className="board-update-form"> */}
+          Board Columns :
           {selectedBoardWithListsData?.map((element, id) => (
             <div className=" board-update-container">
               <input
@@ -144,7 +144,6 @@ function UpdateBoard() {
               <i class="fa-solid fa-xmark"></i>
             </div>
           ))}
-          {/* </form> */}
           <button type="submit" className="button-submit">
             Save Changes
           </button>
