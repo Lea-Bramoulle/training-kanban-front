@@ -81,7 +81,13 @@ function Board() {
           />
           {toggleBordOptions && (
             <div className="board-options-container">
-              <p>Edit Board</p>
+              <Link
+                to={`/board/update`}
+                state={{ background: location }}
+                onClick={() => dispatch(setToggleTaskModal())}
+              >
+                <p>Edit Board</p>
+              </Link>
               <p className="danger" onClick={() => handleDeleteBoard()}>
                 Delete Board
               </p>

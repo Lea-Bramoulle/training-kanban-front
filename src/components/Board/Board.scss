@@ -48,7 +48,7 @@
 
 .board-container-empty {
     background-color: vars.$veryLightGrey;
-    width:100%;
+    width:80%;
     height:100%;
     display: flex;
     flex-direction: column;
@@ -60,5 +60,29 @@
         color: vars.$mediumGrey;
         font-weight: bolder;
         margin-bottom: 1rem;
+    }
+}
+
+.board-update {
+
+   &-input {
+        width:85%;
+        padding:0.5rem 1rem;
+        margin: 0.25rem 0;
+        border: solid 1px vars.$lightGrey;
+        border-radius: 6px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: vars.$mediumGrey;
+    }
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & i {
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
     }
 }

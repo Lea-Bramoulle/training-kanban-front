@@ -9,7 +9,7 @@ export const kanbanApi = createApi({
   },
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
   refetchOnFocus: true,
-  tagTypes: ['Task', 'Subtask', 'Board'],
+  tagTypes: ['Task', 'Subtask', 'Board', 'List'],
   credentials: 'include',
   endpoints: (builder) => ({
     getAllBoards: builder.query({
@@ -23,6 +23,14 @@ export const kanbanApi = createApi({
         url: `boards`,
         method: 'POST',
         body,
+      }),
+      invalidatesTags: ['Board'],
+    }),
+    updateBoard: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `boards/${id}`,
+        method: 'PATCH',
+        body: patch,
       }),
       invalidatesTags: ['Board'],
     }),
@@ -86,6 +94,14 @@ export const kanbanApi = createApi({
       }),
       invalidatesTags: ['Task'],
     }),
+    updateList: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `lists/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      invalidatesTags: ['List'],
+    }),
   }),
 });
 
@@ -94,6 +110,7 @@ export const {
   useGetAllListsOfOneBoardQuery,
   useGetOneBoardQuery,
   usePostBoardMutation,
+  useUpdateBoardMutation,
   useDeleteBoardMutation,
   useGetOneTaskQuery,
   usePostTaskMutation,
@@ -102,4 +119,5 @@ export const {
   usePostSubtaskMutation,
   useUpdateSubtaskMutation,
   usePostListMutation,
+  useUpdateListMutation,
 } = kanbanApi;
