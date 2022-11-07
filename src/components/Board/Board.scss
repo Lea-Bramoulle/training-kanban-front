@@ -165,8 +165,9 @@
 
         &-menu {
             position: absolute;
-            top:1.5rem;
+            top:1.8rem;
             left:-1.5rem;
+            height:90vh;
             width:120%;
             background-color: #fff;
             padding:1.5rem 1rem;
@@ -239,4 +240,8 @@
          border: solid 1px vars.$darkGrey;
          color: vars.$lightGrey;
      }
-    }
+}
+
+#dark .board-header-mobile-menu {
+    background-color: vars.$darkmodeMain;
+}

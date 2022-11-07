@@ -150,7 +150,7 @@ function Board() {
               className="main-button"
             >
               <i className="fa-sharp fa-solid fa-plus"></i>
-              <p>Add New Column</p>
+              {deviceWidth < 720 ? '' : 'Add New Column'}
             </Link>
           ) : (
             <Link
@@ -160,7 +160,7 @@ function Board() {
               className="main-button"
             >
               <i className="fa-sharp fa-solid fa-plus"></i>
-              {deviceWidth < 720 ? '' : 'Add New Column'}
+              {deviceWidth < 720 ? '' : 'Add New Task'}
             </Link>
           )}
 
