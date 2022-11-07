@@ -35,7 +35,6 @@ function Task() {
   const [updateSubtask] = useUpdateSubtaskMutation();
   const [postSubtask] = usePostSubtaskMutation();
   const [updateTask] = useUpdateTaskMutation();
-  const [deleteTask] = useDeleteTaskMutation();
 
   const {
     selectedTaskId,
@@ -147,47 +146,57 @@ function Task() {
           )}
         </div>
         <p className="task-details-desc">{selectedTask?.description}</p>
-        <h3 className="task-details-subtitle">
-          {
-            selectedTask?.subtasks.filter((element) => element.is_done === true)
-              .length
-          }{' '}
-          of {selectedTask?.subtasks.length} subtasks
-        </h3>
+
         {selectedTask?.subtasks.length === 0 ? (
           <p className="task-details-empty">
             No subtasks yet. Begin to organize your work !
           </p>
         ) : (
-          <ul className="subtasks-container">
-            {selectedTask?.subtasks.map((element) => (
-              <li className="subtasks-element" key={element.id}>
-                {element.is_done ? (
-                  <>
-                    <div
-                      className="subtasks-checkbox-true"
-                      onClick={() => {
-                        handleUpdateSubtaskStatus(element.id, !element.is_done);
-                      }}
-                    >
-                      <i className="fa-solid fa-check"></i>
-                    </div>
-                    <p className="text-outline">{element.description}</p>
-                  </>
-                ) : (
-                  <>
-                    <div
-                      className="subtasks-checkbox-false"
-                      onClick={() => {
-                        handleUpdateSubtaskStatus(element.id, !element.is_done);
-                      }}
-                    ></div>
-                    <p className="text-medium">{element.description}</p>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
+          <>
+            <h3 className="task-details-subtitle">
+              {
+                selectedTask?.subtasks.filter(
+                  (element) => element.is_done === true
+                ).length
+              }{' '}
+              of {selectedTask?.subtasks.length} subtasks
+            </h3>
+            <ul className="subtasks-container">
+              {selectedTask?.subtasks.map((element) => (
+                <li className="subtasks-element" key={element.id}>
+                  {element.is_done ? (
+                    <>
+                      <div
+                        className="subtasks-checkbox-true"
+                        onClick={() => {
+                          handleUpdateSubtaskStatus(
+                            element.id,
+                            !element.is_done
+                          );
+                        }}
+                      >
+                        <i className="fa-solid fa-check"></i>
+                      </div>
+                      <p className="text-outline">{element.description}</p>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className="subtasks-checkbox-false"
+                        onClick={() => {
+                          handleUpdateSubtaskStatus(
+                            element.id,
+                            !element.is_done
+                          );
+                        }}
+                      ></div>
+                      <p className="text-medium">{element.description}</p>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
         <form className="subtasks-form" onSubmit={postNewSubtask}>
           <input

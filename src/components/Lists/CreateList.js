@@ -28,7 +28,6 @@ function CreateTask() {
     (state) => state.app
   );
 
-  const selectedBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
   const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
   const [postList] = usePostListMutation();
@@ -47,7 +46,6 @@ function CreateTask() {
         dispatch(setListTitleValue(''));
         dispatch(setColorPickerValue('#635FC7'));
         selectedBoardQuery.refetch();
-        dispatch(setToggleBordOptions());
         dispatch(setToggleTaskModal());
         navigate(-1);
       });

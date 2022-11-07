@@ -123,3 +123,35 @@
 .twitter-picker {
     margin-top: 1rem;
 }
+
+
+
+// DARK MODE 
+
+#dark .task {
+    &-container {
+        background-color: vars.$darkmodeMain;
+        box-shadow: none;
+    }
+
+    &-title {
+        color: white;
+    }
+
+    &-title:hover {
+        color: vars.$mainPurpleHover;
+        transition-duration: 1s;
+    }
+
+    &-subtitle {
+        color: vars.$lightGrey
+    }
+}
+
+
+
+#dark .list-new {
+        background-color: vars.$darkmodeMain;
+        color: white;
+    
+}

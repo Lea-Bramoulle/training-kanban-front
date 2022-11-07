@@ -40,8 +40,8 @@ function DeleteTask() {
       <div className="board-delete-container">
         <h2 className="board-delete-title">Delete this Task ?</h2>
         <p className="board-delete-desc">
-          Are you sure you want to delete the task '{selectedBoard?.name}' ?
-          This action will remove all columns and tasks and cannot be reversed.
+          Are you sure you want to delete the '{selectedBoard?.name}' task and
+          its subtasks? This action cannot be reversed.
         </p>
         <div className="board-delete-buttons">
           <button

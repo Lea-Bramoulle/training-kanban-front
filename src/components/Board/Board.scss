@@ -144,3 +144,45 @@
         margin-top: 2rem;
     }
 }
+
+
+
+// DARK MODE 
+
+#dark .board {
+    background-color: vars.$darkmodeBg;
+
+    &-header {
+        background-color: vars.$darkmodeMain;
+    }
+
+    &-title {
+        color: white;
+    }
+  }
+
+
+.dark .board-delete {
+
+    &-container {
+        background-color: vars.$darkmodeBg;
+    }
+
+    &-title {
+        color: vars.$red;
+    }
+
+    &-desc {
+        color: vars.$lightGrey;
+    }
+
+}
+
+.dark .board-update {
+
+    &-input {
+        background-color: vars.$darkmodeMain;
+         border: solid 1px vars.$darkGrey;
+         color: vars.$lightGrey;
+     }
+    }

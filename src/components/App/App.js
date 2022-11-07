@@ -20,10 +20,18 @@ function App() {
   const dispatch = useDispatch();
   const background = location.state && location.state.background;
 
-  const { toggleTaskModal } = useSelector((state) => state.app);
+  const { darkMode } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    if (darkMode === true) {
+      document.getElementById('modal-root').className = 'dark';
+    } else {
+      document.getElementById('modal-root').className = 'light';
+    }
+  });
 
   return (
-    <div className="app">
+    <div className="app" id={darkMode === true ? 'dark' : 'light'}>
       <Routes location={background || location}>
         <Route path="/" element={<Home />}>
           <Route path="task/:id" element={<Task />} />

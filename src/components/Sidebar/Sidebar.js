@@ -63,6 +63,7 @@ function App() {
                 to={`/board/create`}
                 state={{ background: location }}
                 onClick={() => dispatch(setToggleTaskModal())}
+                className="link-active"
               >
                 <i className="fa-sharp fa-solid fa-plus"></i> Create new board
               </Link>

@@ -34,6 +34,11 @@
   font-weight: bold;
 }
 
+.main-button-danger:hover {
+  background-color: vars.$redHover;
+  transition-duration: 1s;
+}
+
 .main-button-light {
   padding: 1rem;
   background-color: vars.$veryLightGrey;
@@ -41,6 +46,11 @@
   border-radius: 25px;
   border:none;
   font-weight: bolder;
+}
+
+.main-button-light:hover {
+  background-color: vars.$mainPurpleHover;
+  transition-duration: 1s;
 }
 
 .button-submit {
@@ -76,6 +86,10 @@
   transition-duration: 1s;
 }
 
+.link-active {
+  color: vars.$mainPurple;
+}
+
 .danger {
   color: vars.$red;
 }
@@ -109,6 +123,9 @@
   margin-bottom: 0.5rem;
 }
 
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -117,3 +134,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+// DARK MODE 
+

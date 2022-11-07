@@ -33,6 +33,7 @@
 
     &-toggle-container:hover {
         background-color: vars.$lightPurple;
+        transition-duration: 1s;
         
         & p {
             color: vars.$mainPurple;
@@ -129,7 +130,8 @@
         height:1.5rem;
         background-color: vars.$mainPurple;
         border-radius: 20px;
-        position: relative;        
+        position: relative;  
+        cursor: pointer;      
 
         &-toggler {
             width: 1rem;
@@ -147,3 +149,38 @@
         }
     }
   }
+
+
+
+
+  // DARK MODE 
+
+  #dark .sidebar {
+    background-color: vars.$darkmodeMain;
+
+ 
+  }
+
+  #dark .boards {
+
+    &-title {
+        color: vars.$lightGrey;
+    }
+
+    &-element {
+        color: vars.$lightGrey;
+    }
+
+    &-element:hover {
+        background-color: vars.$mainPurpleHover;
+        color: vars.$lightPurple;
+    }
+  }
+
+  #dark .darkmode {
+    &-container {
+        background-color: vars.$darkmodeBg;
+    }
+  }
+
+

@@ -89,7 +89,6 @@ function UpdateTask() {
       .unwrap()
       .then((data) => {
         console.log(data);
-        dispatch(setToggleTaskOptions());
         boardListsDataQuery.refetch();
         taskDataQuery.refetch();
         dispatch(setToggleTaskModal());

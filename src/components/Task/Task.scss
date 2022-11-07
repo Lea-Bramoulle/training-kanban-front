@@ -45,7 +45,10 @@
     }
 
     &-desc {
-        padding:2rem 0;
+        width:90%;
+        text-align: justify;
+        font-size: 0.9rem;
+        padding:1rem 0;
         color:vars.$mediumGrey;
     }
 
@@ -74,7 +77,10 @@
     & p {
         margin-bottom: 1rem;
         cursor: pointer;
+        font-size: 0.9rem;
     }
+
+
 }
 
 .subtasks {
@@ -95,6 +101,7 @@
         display: flex;
         align-items: center;
         background-color: vars.$veryLightGrey;
+        color:vars.$darkGrey;
     }
 
     &-element:hover {
@@ -186,4 +193,102 @@
     &-input:focus {
         border: solid 1px vars.$mainPurpleHover;
     }
+}
+
+
+
+
+// DARK MODE 
+
+
+.dark .task-details {
+
+    &-container {
+        background-color: vars.$darkmodeMain;
+    }
+
+    &-title {
+        color:white;
+
+    }
+
+    &-subtitle {
+        color:white;
+    }
+
+    &-desc {
+        color:vars.$mediumGrey;
+    }
+}
+
+.dark .subtasks {
+
+    &-container {
+        padding: 1rem 0;
+        max-height: 12rem;
+        overflow-y: scroll;
+        margin-bottom: 2rem;
+    }
+
+    &-element {
+        background-color: vars.$darkmodeBg;
+        color: vars.$lightGrey;
+    }
+
+    &-element:hover {
+        background-color: #39395B;
+    }
+
+
+    &-checkbox-false {
+        background-color: vars.$darkmodeMain;
+    }
+}
+
+.dark .task-create {
+
+    &-input {
+        background-color:vars.$darkmodeMain;
+        border: solid 1px vars.$darkGrey;
+
+    }
+
+    &-input:focus {
+        border: solid 1px vars.$mainPurpleHover;
+
+    }
+}
+
+.dark .task-details-status {
+    border: solid 1px vars.$darkGrey;
+}
+
+.dark .task-list-option {
+    background-color: vars.$darkmodeBg;
+    padding-top: 1rem;
+    margin-top: -0.8rem;
+
+    & p {
+        padding: 0.5rem 0;
+        color: vars.$mediumGrey;
+        font-weight: bolder;
+    }
+
+    & p:hover {
+        color: vars.$mainPurple;
+    }
+}
+
+.dark .task-options-container {
+    background-color: vars.$darkmodeBg;
+
+    & p {
+        color: white;
+    }
+
+    & p:hover {
+        color:  vars.$mainPurple;
+        transition-duration: 1s;
+    }
+
 }
