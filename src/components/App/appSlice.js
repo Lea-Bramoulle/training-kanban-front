@@ -13,6 +13,7 @@ export const appSlice = createSlice({
     toggleTaskModal: false,
     setBoardTitleValue: '',
     taskTitleValue: '',
+    taskDescriptionValue: '',
     listTitleValue: '',
     taskDescriptionValue: '',
     taskListIdValue: null,

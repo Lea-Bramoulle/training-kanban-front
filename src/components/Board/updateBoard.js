@@ -13,6 +13,7 @@ import {
   useGetOneBoardQuery,
   useGetAllListsOfOneBoardQuery,
   useUpdateListMutation,
+  useDeleteListMutation,
 } from './../../API/APIslice';
 
 import {
@@ -33,6 +34,7 @@ function UpdateBoard() {
 
   const [updateBoard] = useUpdateBoardMutation();
   const [updateList] = useUpdateListMutation();
+  const [deleteList] = useDeleteListMutation();
 
   const boardsDataQuery = useGetAllBoardsQuery();
   const boardDataQuery = useGetOneBoardQuery(selectedBoardId);
@@ -92,6 +94,19 @@ function UpdateBoard() {
       });
   };
 
+  const handleDeleteList = (listId) => {
+    const newListsNameValues = [...listsNameValues].filter(
+      (element) => element.id !== listId
+    );
+    setListsNameValues(newListsNameValues);
+
+    deleteList(listId)
+      .unwrap()
+      .then(() => {
+        boardListsDataQuery.refetch();
+      });
+  };
+
   return ReactDOM.createPortal(
     <div className="task-details">
       <div className="task-details-container">
@@ -113,7 +128,7 @@ function UpdateBoard() {
 
         <form className="task-create-form" onSubmit={updateSelectedBoard}>
           <label for="name" className="task-details-subtitle">
-            Board name :
+            Board name
           </label>
           <input
             type="text"
@@ -126,24 +141,28 @@ function UpdateBoard() {
               dispatch(setBoardTitleValue(e.target.value));
             }}
           />
-          Board Columns :
-          {selectedBoardWithListsData?.map((element, id) => (
-            <div className=" board-update-container">
-              <input
-                type="text"
-                name={`name-${id}`}
-                id={`name-${id}`}
-                className="board-update-input"
-                placeholder={element.name}
-                value={listsNameValues[id].value}
-                onChange={(e) => {
-                  handleListNameValueChange(id, e.target.value);
-                }}
-              />
-              <i class="fa-solid fa-chevron-down success"></i>
-              <i class="fa-solid fa-xmark"></i>
-            </div>
-          ))}
+          <p className="task-details-subtitle mt-1">Board Columns</p>
+          <div className="board-update-lists">
+            {selectedBoardWithListsData?.map((element, id) => (
+              <div className=" board-update-container">
+                <input
+                  type="text"
+                  name={`name-${id}`}
+                  id={`name-${id}`}
+                  className="board-update-input"
+                  placeholder={element.name}
+                  value={listsNameValues[element.id]?.value}
+                  onChange={(e) => {
+                    handleListNameValueChange(id, e.target.value);
+                  }}
+                />
+                <i
+                  class="fa-solid fa-xmark"
+                  onClick={() => handleDeleteList(element.id)}
+                ></i>
+              </div>
+            ))}
+          </div>
           <button type="submit" className="button-submit">
             Save Changes
           </button>

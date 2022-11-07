@@ -105,7 +105,7 @@ function CreateTask() {
             e.g. It’s always good to take a break. This 15 minute break will
             recharge the batteries a little.
           </textarea>
-          <label for="description" className="task-details-subtitle">
+          <label for="status" className="task-details-subtitle">
             Status
           </label>
           <select

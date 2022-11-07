@@ -86,6 +86,13 @@ export const kanbanApi = createApi({
       }),
       invalidatesTags: ['Subtask'],
     }),
+    deleteSubtask: builder.mutation({
+      query: (subtaskId) => ({
+        url: `/subtasks/${subtaskId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Subtask'],
+    }),
     postList: builder.mutation({
       query: (body) => ({
         url: `lists`,
@@ -99,6 +106,13 @@ export const kanbanApi = createApi({
         url: `lists/${id}`,
         method: 'PATCH',
         body: patch,
+      }),
+      invalidatesTags: ['List'],
+    }),
+    deleteList: builder.mutation({
+      query: (listId) => ({
+        url: `/lists/${listId}`,
+        method: 'DELETE',
       }),
       invalidatesTags: ['List'],
     }),
@@ -118,6 +132,8 @@ export const {
   useDeleteTaskMutation,
   usePostSubtaskMutation,
   useUpdateSubtaskMutation,
+  useDeleteSubtaskMutation,
   usePostListMutation,
   useUpdateListMutation,
+  useDeleteListMutation,
 } = kanbanApi;

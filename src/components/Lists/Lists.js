@@ -25,8 +25,6 @@ function Lists() {
 
   const listsOfBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
-  console.log(listsOfBoardData);
-
   return (
     <div className="lists-container">
       {listsOfBoardData?.map((element) => (

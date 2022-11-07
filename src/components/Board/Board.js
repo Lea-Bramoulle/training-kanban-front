@@ -36,8 +36,6 @@ function Board() {
   const listsOfBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
   const boardsDataQuery = useGetAllBoardsQuery();
 
-  console.log(listsOfBoardData);
-
   const handleDeleteBoard = () => {
     deleteBoard(boardData.id)
       .unwrap()

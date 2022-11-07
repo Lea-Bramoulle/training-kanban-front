@@ -18,7 +18,7 @@
 
     &-container {
         width:35%;
-        min-height:60%;
+        min-height:40%;
         margin:auto;
         background-color: #fff;
         padding: 2rem;
@@ -38,13 +38,21 @@
     }
 
     &-subtitle {
-        color:vars.$darkGrey;
-        font-weight: bolder;
+        color:vars.$mediumGrey;
+        font-weight: bold;
+        font-size: 0.9rem;
     }
 
     &-desc {
         padding:2rem 0;
         color:vars.$mediumGrey;
+    }
+
+    &-empty {
+        font-weight: light;
+        font-size: 0.8rem;
+        color: vars.$mediumGrey;
+        margin: 1rem 0 2rem 0;
     }
 
 }
@@ -68,7 +76,7 @@
 
     &-container {
         padding: 1rem 0;
-        max-height: 16rem;
+        max-height: 12rem;
         overflow-y: scroll;
         margin-bottom: 2rem;
     }
@@ -132,7 +140,7 @@
 
 .task-list-option {
     position:absolute;
-    bottom:-8rem;
+    top:4rem;
     left:0;
     padding: 0 2rem 1rem 2rem;
     background-color: #fff;
@@ -163,7 +171,7 @@
 
     &-input {
         padding:1rem;
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         border: solid 1px vars.$lightGrey;
         border-radius: 6px;
         font-family: 'Plus Jakarta Sans', sans-serif;

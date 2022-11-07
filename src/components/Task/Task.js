@@ -5,6 +5,7 @@ import { React, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import {
   useUpdateSubtaskMutation,
@@ -29,6 +30,7 @@ import {
 function Task() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [updateSubtask] = useUpdateSubtaskMutation();
   const [postSubtask] = usePostSubtaskMutation();
@@ -55,7 +57,6 @@ function Task() {
 
   const postNewSubtask = (e) => {
     e.preventDefault();
-    console.log(e.target.description.value);
     postSubtask({
       description: e.target.description.value,
       is_done: false,
@@ -82,7 +83,6 @@ function Task() {
   };
 
   const handleUpdateTaskStatus = (id, list_id) => {
-    console.log(list_id);
     updateTask({
       id,
       list_id,
@@ -133,7 +133,14 @@ function Task() {
 
           {toggleTaskOptions && (
             <div className="task-options-container">
-              <p>Edit Task</p>
+              <Link
+                to={`/task/update`}
+                state={{ background: location }}
+                onClick={() => dispatch(setToggleTaskModal())}
+              >
+                <p>Edit Task</p>
+              </Link>
+
               <p
                 className="danger"
                 onClick={() => {
@@ -153,35 +160,41 @@ function Task() {
           }{' '}
           of {selectedTask?.subtasks.length} subtasks
         </h3>
-        <ul className="subtasks-container">
-          {selectedTask?.subtasks.map((element) => (
-            <li className="subtasks-element" key={element.id}>
-              {element.is_done ? (
-                <>
-                  <div
-                    className="subtasks-checkbox-true"
-                    onClick={() => {
-                      handleUpdateSubtaskStatus(element.id, !element.is_done);
-                    }}
-                  >
-                    <i className="fa-solid fa-check"></i>
-                  </div>
-                  <p className="text-outline">{element.description}</p>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="subtasks-checkbox-false"
-                    onClick={() => {
-                      handleUpdateSubtaskStatus(element.id, !element.is_done);
-                    }}
-                  ></div>
-                  <p className="text-medium">{element.description}</p>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+        {selectedTask?.subtasks.length === 0 ? (
+          <p className="task-details-empty">
+            No subtasks yet. Begin to organize your work !
+          </p>
+        ) : (
+          <ul className="subtasks-container">
+            {selectedTask?.subtasks.map((element) => (
+              <li className="subtasks-element" key={element.id}>
+                {element.is_done ? (
+                  <>
+                    <div
+                      className="subtasks-checkbox-true"
+                      onClick={() => {
+                        handleUpdateSubtaskStatus(element.id, !element.is_done);
+                      }}
+                    >
+                      <i className="fa-solid fa-check"></i>
+                    </div>
+                    <p className="text-outline">{element.description}</p>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      className="subtasks-checkbox-false"
+                      onClick={() => {
+                        handleUpdateSubtaskStatus(element.id, !element.is_done);
+                      }}
+                    ></div>
+                    <p className="text-medium">{element.description}</p>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
         <form className="subtasks-form" onSubmit={postNewSubtask}>
           <input
             type="text"
