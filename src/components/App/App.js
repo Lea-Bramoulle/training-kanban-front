@@ -9,6 +9,7 @@ import Home from '../../pages/Home/home';
 import Task from '../Task/Task';
 import CreateTask from '../Task/CreateTask';
 import UpdateTask from '../Task/UpdateTask';
+import DeleteTask from '../Task/DeleteTask';
 import CreateList from '../Lists/CreateList';
 import CreateBoard from '../Board/CreateBoard';
 import UpdateBoard from '../Board/updateBoard';
@@ -28,6 +29,7 @@ function App() {
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
           <Route path="task/update" element={<UpdateTask />} />
+          <Route path="task/delete" element={<DeleteTask />} />
           <Route path="list/create" element={<CreateList />} />
           <Route path="board/create" element={<CreateBoard />} />
           <Route path="board/update" element={<UpdateBoard />} />
@@ -40,6 +42,7 @@ function App() {
           <Route path="task/:id" element={<Task />} />
           <Route path="task/create" element={<CreateTask />} />
           <Route path="task/update" element={<UpdateTask />} />
+          <Route path="task/delete" element={<DeleteTask />} />
           <Route path="list/create" element={<CreateList />} />
           <Route path="board/create" element={<CreateBoard />} />
           <Route path="board/update" element={<UpdateBoard />} />

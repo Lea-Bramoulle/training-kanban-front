@@ -96,17 +96,6 @@ function Task() {
       });
   };
 
-  const handleDeleteTask = () => {
-    deleteTask(selectedTaskId)
-      .unwrap()
-      .then(() => {
-        selectedBoardQuery.refetch();
-        dispatch(setToggleTaskOptions());
-        dispatch(setToggleTaskModal());
-        navigate(-1);
-      });
-  };
-
   return ReactDOM.createPortal(
     <div className="task-details">
       <div className="task-details-container">
@@ -143,15 +132,17 @@ function Task() {
               >
                 <p>Edit Task</p>
               </Link>
-
-              <p
+              <Link
+                to={`/task/delete`}
+                state={{ background: location }}
                 className="danger"
                 onClick={() => {
-                  handleDeleteTask();
+                  dispatch(setToggleTaskModal());
+                  dispatch(setToggleTaskOptions());
                 }}
               >
-                Delete Task
-              </p>
+                <p>Delete Task</p>
+              </Link>
             </div>
           )}
         </div>
