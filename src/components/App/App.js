@@ -3,7 +3,7 @@ import './App.scss';
 
 import { React, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Home from '../../pages/Home/home';
 import Task from '../Task/Task';
@@ -17,7 +17,6 @@ import DeleteBoard from '../Board/DeleteBoard';
 
 function App() {
   const location = useLocation();
-  const dispatch = useDispatch();
   const background = location.state && location.state.background;
 
   const { darkMode } = useSelector((state) => state.app);

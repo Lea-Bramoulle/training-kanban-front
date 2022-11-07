@@ -1,15 +1,14 @@
 import './Sidebar.scss';
 
-import { React, useState, useEffect } from 'react';
+import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import {
   setDisplayDarkMode,
   setSelectedBoardID,
   setToggleSidebar,
   setToggleTaskModal,
-  setIsMobileDevice,
 } from './../App/appSlice';
 
 import { useGetAllBoardsQuery } from './../../API/APIslice';
@@ -21,7 +20,7 @@ function App() {
   const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
     (state) => state.app
   );
-  const { data, error, isLoading } = useGetAllBoardsQuery();
+  const { data } = useGetAllBoardsQuery();
 
   return (
     <div className="sidebar-relative">
