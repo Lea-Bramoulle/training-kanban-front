@@ -1,4 +1,4 @@
-function getObjectMinId(object) {
+export default function getObjectMinId(object) {
   console.log(object);
   const minId = Math.min(...object.map((o) => o.id));
 
@@ -6,4 +6,4 @@ function getObjectMinId(object) {
   return minId;
 }
 
-module.exports = getObjectMinId;
+// module.exports = getObjectMinId;
