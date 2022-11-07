@@ -18,8 +18,6 @@ import {
 
 import {
   setToggleTaskModal,
-  setToggleBordOptions,
-  setToggleTaskOptions,
   setTaskTitleValue,
   setTaskDescriptionValue,
 } from './../App/appSlice';
