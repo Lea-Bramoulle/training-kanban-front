@@ -111,7 +111,7 @@
 }
 
 .w-80 {
-  width:82%;
+  width:83%;
 }
 
 .w-50 {
@@ -138,5 +138,10 @@
 
 
 
-// DARK MODE 
+  // RESPONSIVE <600px 
 
+  @media screen and (width < 600px) {
+    .w-80 {
+        width:100%
+    }
+  }

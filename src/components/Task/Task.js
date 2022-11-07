@@ -118,7 +118,6 @@ function Task() {
               }}
             />
           </div>
-
           {toggleTaskOptions && (
             <div className="task-options-container">
               <Link

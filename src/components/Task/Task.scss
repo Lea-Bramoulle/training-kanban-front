@@ -28,6 +28,7 @@
     &-title {
         font-size: 1.2rem;
         font-weight: bolder;
+        width: 85%;
 
         &-section {
             display: flex;
@@ -47,7 +48,7 @@
     &-desc {
         width:90%;
         text-align: justify;
-        font-size: 0.9rem;
+        font-size: 1rem;
         padding:1rem 0;
         color:vars.$mediumGrey;
     }
@@ -194,6 +195,43 @@
         border: solid 1px vars.$mainPurpleHover;
     }
 }
+
+
+
+
+
+
+
+// RESPONSIVE <600px 
+
+@media screen and (width < 600px) {
+
+    .task-details {
+        
+        &-container {
+        width:90%;
+        height:auto;
+        max-height:auto;
+        padding:2rem 1rem;
+        }
+
+        &-title {
+            font-size: 1.1rem;
+            font-weight: bolder;
+            width: 85%;
+        }
+
+        &-subtitle {
+            color:vars.$mediumGrey;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+
+
 
 
 

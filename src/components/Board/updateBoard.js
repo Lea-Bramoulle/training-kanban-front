@@ -1,8 +1,7 @@
 import './../App/App.scss';
 import './Board.scss';
 
-import React from 'react';
-import { useState } from 'react';
+import { React, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -20,15 +19,13 @@ import {
   setToggleTaskModal,
   setBoardTitleValue,
   setSelectedBoardID,
-  setToggleBordOptions,
-  setListTitleValue,
 } from './../App/appSlice';
 
 function UpdateBoard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { boardTitleValue, selectedBoardId, listTitleValue } = useSelector(
+  const { boardTitleValue, selectedBoardId } = useSelector(
     (state) => state.app
   );
 

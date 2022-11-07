@@ -147,6 +147,55 @@
 
 
 
+
+
+  // RESPONSIVE <600px 
+
+  @media screen and (width < 600px) {
+
+    .board-header-mobile {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        & i {
+            margin-left: 0.5rem;
+            color: vars.$mainPurple;
+        }
+
+        &-menu {
+            position: absolute;
+            top:1.5rem;
+            left:-1.5rem;
+            width:120%;
+            background-color: #fff;
+            padding:1.5rem 1rem;
+        }
+
+        &-link {
+            padding-top: 0.5rem;
+        }
+    }
+
+    .board-title {
+        font-size: 1.1rem;
+    }
+    .board-delete-container {
+        width:90%;
+    }
+
+    .sidebar-logo {
+        width:1.5rem;
+        margin-right: 0.5rem;
+    }
+  }
+
+
+
+
+
+
+
 // DARK MODE 
 
 #dark .board {

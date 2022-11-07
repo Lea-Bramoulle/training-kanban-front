@@ -1,6 +1,6 @@
 import './Sidebar.scss';
 
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import {
   setSelectedBoardID,
   setToggleSidebar,
   setToggleTaskModal,
+  setIsMobileDevice,
 } from './../App/appSlice';
 
 import { useGetAllBoardsQuery } from './../../API/APIslice';
@@ -17,9 +18,8 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
-    (state) => state.app
-  );
+  const { darkMode, selectedBoardId, toggleSidebar, isMobileDevice } =
+    useSelector((state) => state.app);
   const { data, error, isLoading } = useGetAllBoardsQuery();
 
   return (
@@ -32,7 +32,7 @@ function App() {
             className="sidebar-logo"
           />
           <div className="boards">
-            <h2 className="boards-title">All Boards</h2>
+            <h2 className="boards-title">All Boards ({data?.length})</h2>
             <ul className="boards-container">
               {data?.map((element) => (
                 <li
@@ -71,8 +71,8 @@ function App() {
           </div>
           <div className="darkmode-container">
             <img
-              src={require('./../../assets/images/icon-light-theme.png')}
-              alt="darkmode icon light"
+              src={require('./../../assets/images/icon-dark-theme.png')}
+              alt="darkmode icon dark"
               className="darkmode-icon"
             />
             <div
@@ -88,8 +88,8 @@ function App() {
               ></div>
             </div>
             <img
-              src={require('./../../assets/images/icon-dark-theme.png')}
-              alt="darkmode icon dark"
+              src={require('./../../assets/images/icon-light-theme.png')}
+              alt="darkmode icon light"
               className="darkmode-icon"
             />
           </div>

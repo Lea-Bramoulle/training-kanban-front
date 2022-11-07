@@ -157,8 +157,7 @@ function UpdateTask() {
               dispatch(setTaskDescriptionValue(e.target.value));
             }}
           >
-            e.g. It’s always good to take a break. This 15 minute break will
-            recharge the batteries a little.
+            {taskData?.description}
           </textarea>
           {taskData?.subtasks.length !== 0 && (
             <p className="task-details-subtitle">Subtasks</p>

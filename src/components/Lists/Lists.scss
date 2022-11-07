@@ -51,9 +51,9 @@
     }
 
     &-new {
-        height:70vh;
+        height:72vh;
         min-height: 300px;
-        width:20% !important;
+        width:20% ;
         background-color: vars.$lightPurple;
         margin: 4rem 0;
         display: flex;
@@ -77,7 +77,7 @@
 
 .tasks {
     margin-top: 1rem;
-    max-height:75%;
+    max-height:90%;
     min-height: 400px;
     display: flex; /* [1] */
     flex-direction: column;
@@ -124,6 +124,28 @@
     margin-top: 1rem;
 }
 
+
+
+// RESPONSIVE <600px 
+
+@media screen and (width < 600px) {
+    .list {
+        width:85% !important;
+    }
+
+    .list-new {
+        width:15rem;
+    }
+
+    .lists-container {
+        height:auto;
+    }
+
+
+    .tasks {
+        max-height:auto;
+    }
+}
 
 
 // DARK MODE 

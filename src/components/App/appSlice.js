@@ -5,6 +5,7 @@ export const appSlice = createSlice({
   initialState: {
     toggleSidebar: true,
     darkMode: false,
+    toggleMobileMenu: false,
     toggleBordOptions: false,
     toggleTaskOptions: false,
     toggleTaskStatusOptions: false,
@@ -15,7 +16,6 @@ export const appSlice = createSlice({
     taskTitleValue: '',
     taskDescriptionValue: '',
     listTitleValue: '',
-    taskDescriptionValue: '',
     taskListIdValue: null,
     subtaskDescriptionValue: '',
     colorPickerValue: '#635FC7',
@@ -26,6 +26,9 @@ export const appSlice = createSlice({
     },
     setDisplayDarkMode: (state, action) => {
       state.darkMode = !state.darkMode;
+    },
+    setToggleMobileMenu: (state, action) => {
+      state.toggleMobileMenu = !state.toggleMobileMenu;
     },
     setToggleBordOptions: (state, action) => {
       state.toggleBordOptions = !state.toggleBordOptions;
@@ -71,6 +74,7 @@ export const appSlice = createSlice({
 
 export const {
   setDisplayDarkMode,
+  setToggleMobileMenu,
   setSelectedBoardID,
   setBoardTitleValue,
   setToggleBordOptions,
