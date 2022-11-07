@@ -18,8 +18,9 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { darkMode, selectedBoardId, toggleSidebar, isMobileDevice } =
-    useSelector((state) => state.app);
+  const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
+    (state) => state.app
+  );
   const { data, error, isLoading } = useGetAllBoardsQuery();
 
   return (

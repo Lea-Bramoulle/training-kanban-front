@@ -1,21 +1,13 @@
 import './Lists.scss';
 import './../../styles/_reset.scss';
 
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-import {
-  useGetAllListsOfOneBoardQuery,
-  usePostListMutation,
-} from './../../API/APIslice';
+import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
 
-import {
-  setSelectedTaskID,
-  setToggleTaskModal,
-  setBoardData,
-} from './../App/appSlice';
+import { setSelectedTaskID, setToggleTaskModal } from './../App/appSlice';
 
 function Lists() {
   const selectedBoardId = useSelector((state) => state.app.selectedBoardId);

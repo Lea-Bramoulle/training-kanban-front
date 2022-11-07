@@ -17,7 +17,6 @@ import {
   setToggleTaskModal,
   setListTitleValue,
   setColorPickerValue,
-  setToggleBordOptions,
 } from './../App/appSlice';
 
 function CreateTask() {

@@ -1,16 +1,15 @@
 import './../App/App.scss';
 import './Task.scss';
 
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import {
   useUpdateSubtaskMutation,
   useUpdateTaskMutation,
-  useDeleteTaskMutation,
   usePostSubtaskMutation,
 } from './../../API/APIslice';
 
@@ -24,7 +23,6 @@ import {
   setToggleTaskStatusOptions,
   setToggleTaskModal,
   setSubtaskDescriptionValue,
-  setSelectedBoardID,
 } from './../App/appSlice';
 
 function Task() {

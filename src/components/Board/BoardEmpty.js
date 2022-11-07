@@ -3,11 +3,11 @@ import './../../styles/_reset.scss';
 
 import React from 'react';
 
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { setToggleTaskModal } from './../App/appSlice';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function BoardEmpty() {
   const dispatch = useDispatch();

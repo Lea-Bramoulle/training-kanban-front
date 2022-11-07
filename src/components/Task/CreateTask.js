@@ -22,12 +22,9 @@ function CreateTask() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {
-    selectedBoardId,
-    taskTitleValue,
-    taskDescriptionValue,
-    taskListIdValue,
-  } = useSelector((state) => state.app);
+  const { selectedBoardId, taskTitleValue, taskDescriptionValue } = useSelector(
+    (state) => state.app
+  );
 
   const [postTask] = usePostTaskMutation();
 
