@@ -12,6 +12,7 @@ import UpdateTask from '../Task/UpdateTask';
 import CreateList from '../Lists/CreateList';
 import CreateBoard from '../Board/CreateBoard';
 import UpdateBoard from '../Board/updateBoard';
+import DeleteBoard from '../Board/DeleteBoard';
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
           <Route path="list/create" element={<CreateList />} />
           <Route path="board/create" element={<CreateBoard />} />
           <Route path="board/update" element={<UpdateBoard />} />
+          <Route path="board/delete" element={<DeleteBoard />} />
         </Route>
       </Routes>
 
@@ -41,6 +43,7 @@ function App() {
           <Route path="list/create" element={<CreateList />} />
           <Route path="board/create" element={<CreateBoard />} />
           <Route path="board/update" element={<UpdateBoard />} />
+          <Route path="board/delete" element={<DeleteBoard />} />
         </Routes>
       )}
     </div>

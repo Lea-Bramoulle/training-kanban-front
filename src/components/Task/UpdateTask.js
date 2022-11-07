@@ -55,14 +55,11 @@ function UpdateTask() {
       description: value,
     };
 
-    console.log(newSubtaskNameValues);
     setSubtasksNameValues(newSubtaskNameValues);
   };
 
   const updateSelectedTask = (e) => {
     e.preventDefault();
-
-    console.log(subtasksNameValues);
 
     taskData?.subtasks.forEach((element) => {
       const subtaskInStateValue = subtasksNameValues.find(
@@ -125,7 +122,6 @@ function UpdateTask() {
               alt="Task option icon"
               className="boards-element-icon"
               onClick={() => {
-                dispatch(setToggleBordOptions());
                 dispatch(setToggleTaskModal());
                 navigate(-1);
               }}
@@ -165,7 +161,9 @@ function UpdateTask() {
             e.g. It’s always good to take a break. This 15 minute break will
             recharge the batteries a little.
           </textarea>
-          <p className="task-details-subtitle mt-1">Subtasks</p>
+          {taskData?.subtasks.length !== 0 && (
+            <p className="task-details-subtitle">Subtasks</p>
+          )}
           <div className="board-update-lists">
             {taskData?.subtasks.map((element, id) => (
               <div key={id} className=" board-update-container">

@@ -24,6 +24,25 @@
   transition-duration: 0.5s;
 }
 
+.main-button-danger {
+  color:white;
+  background-color: vars.$red;
+  border:none;
+  padding:1rem 2rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.main-button-light {
+  padding: 1rem;
+  background-color: vars.$veryLightGrey;
+  color:vars.$mainPurple;
+  border-radius: 25px;
+  border:none;
+  font-weight: bolder;
+}
+
 .button-submit {
   width:100%;
   padding: 1rem;
@@ -79,6 +98,10 @@
 
 .w-80 {
   width:80%;
+}
+
+.w-50 {
+  width:50%;
 }
 
 .mt-1 {

@@ -8,14 +8,16 @@ import { useNavigate } from 'react-router-dom';
 
 import { TwitterPicker } from 'react-color';
 
-import { usePostListMutation } from './../../API/APIslice';
-
-import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
+import {
+  usePostListMutation,
+  useGetAllListsOfOneBoardQuery,
+} from './../../API/APIslice';
 
 import {
   setToggleTaskModal,
   setListTitleValue,
   setColorPickerValue,
+  setToggleBordOptions,
 } from './../App/appSlice';
 
 function CreateTask() {
@@ -45,6 +47,7 @@ function CreateTask() {
         dispatch(setListTitleValue(''));
         dispatch(setColorPickerValue('#635FC7'));
         selectedBoardQuery.refetch();
+        dispatch(setToggleBordOptions());
         dispatch(setToggleTaskModal());
         navigate(-1);
       });
@@ -58,7 +61,7 @@ function CreateTask() {
     <div className="task-details">
       <div className="task-details-container">
         <div className="task-details-title-section">
-          <h2 className="task-details-title">Add New List</h2>
+          <h2 className="task-details-title">Add New Column</h2>
           <div>
             <img
               src={require('./../../assets/images/icon-cross.png')}
@@ -74,7 +77,7 @@ function CreateTask() {
 
         <form className="task-create-form" onSubmit={postNewList}>
           <label for="name" className="task-details-subtitle">
-            List name :
+            Column name :
           </label>
           <input
             type="text"
@@ -88,7 +91,7 @@ function CreateTask() {
           />
 
           <label for="description" className="task-details-subtitle">
-            List color :
+            Column color :
           </label>
           <TwitterPicker
             onChangeComplete={handleChangeColorValue}
@@ -96,7 +99,7 @@ function CreateTask() {
             className="twitter-picker"
           />
           <button type="submit" className="button-submit">
-            Create List
+            Create Column
           </button>
         </form>
       </div>

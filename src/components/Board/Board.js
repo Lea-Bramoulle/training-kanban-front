@@ -7,16 +7,10 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import {
   useGetAllListsOfOneBoardQuery,
-  useGetAllBoardsQuery,
   useGetOneBoardQuery,
-  useDeleteBoardMutation,
 } from './../../API/APIslice';
 
-import {
-  setToggleBordOptions,
-  setToggleTaskModal,
-  setSelectedBoardID,
-} from './../App/appSlice';
+import { setToggleBordOptions, setToggleTaskModal } from './../App/appSlice';
 
 import Lists from '../Lists/Lists';
 import ListsEmpty from '../Lists/ListsEmpty';
@@ -28,23 +22,9 @@ function Board() {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const [deleteBoard] = useDeleteBoardMutation();
 
   const boardData = useGetOneBoardQuery(selectedBoardId).data;
   const listsOfBoardData = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
-  const boardsDataQuery = useGetAllBoardsQuery();
-
-  const handleDeleteBoard = () => {
-    deleteBoard(boardData.id)
-      .unwrap()
-      .then(() => {
-        dispatch(setToggleBordOptions());
-        dispatch(setSelectedBoardID(null));
-        boardsDataQuery.refetch();
-      });
-  };
 
   return (
     <section className={toggleSidebar ? 'board w-80' : 'board w-100'}>
@@ -80,15 +60,38 @@ function Board() {
           {toggleBordOptions && (
             <div className="board-options-container">
               <Link
+                to={`/list/create`}
+                state={{ background: location }}
+                onClick={() => {
+                  dispatch(setToggleTaskModal());
+                  dispatch(setToggleBordOptions());
+                }}
+              >
+                <p>
+                  <i className="fa-solid fa-plus"></i> New Column
+                </p>
+              </Link>
+              <Link
                 to={`/board/update`}
                 state={{ background: location }}
-                onClick={() => dispatch(setToggleTaskModal())}
+                onClick={() => {
+                  dispatch(setToggleTaskModal());
+                  dispatch(setToggleBordOptions());
+                }}
               >
                 <p>Edit Board</p>
               </Link>
-              <p className="danger" onClick={() => handleDeleteBoard()}>
-                Delete Board
-              </p>
+              <Link
+                to={`/board/delete`}
+                state={{ background: location }}
+                onClick={() => {
+                  dispatch(setToggleTaskModal());
+                  dispatch(setToggleBordOptions());
+                }}
+              >
+                <p>Delete Board</p>
+              </Link>
+              {/* <p onClick={() => handleDeleteBoard()}>Delete Board</p> */}
             </div>
           )}
         </div>

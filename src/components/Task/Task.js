@@ -101,7 +101,7 @@ function Task() {
       .unwrap()
       .then(() => {
         selectedBoardQuery.refetch();
-        dispatch(setToggleTaskOptions(false));
+        dispatch(setToggleTaskOptions());
         dispatch(setToggleTaskModal());
         navigate(-1);
       });
@@ -136,7 +136,10 @@ function Task() {
               <Link
                 to={`/task/update`}
                 state={{ background: location }}
-                onClick={() => dispatch(setToggleTaskModal())}
+                onClick={() => {
+                  dispatch(setToggleTaskModal());
+                  dispatch(setToggleTaskOptions());
+                }}
               >
                 <p>Edit Task</p>
               </Link>

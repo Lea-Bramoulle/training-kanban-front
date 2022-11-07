@@ -85,7 +85,6 @@ function UpdateBoard() {
         console.log(data);
         dispatch(setBoardTitleValue(''));
         dispatch(setSelectedBoardID(data.id));
-        dispatch(setToggleBordOptions());
         boardsDataQuery.refetch();
         boardListsDataQuery.refetch();
         boardDataQuery.refetch();
@@ -118,7 +117,6 @@ function UpdateBoard() {
               alt="Task option icon"
               className="boards-element-icon"
               onClick={() => {
-                dispatch(setToggleBordOptions());
                 dispatch(setToggleTaskModal());
                 navigate(-1);
               }}

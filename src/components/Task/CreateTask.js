@@ -93,7 +93,7 @@ function CreateTask() {
           <textarea
             id="description"
             name="description"
-            rows="6"
+            rows="4"
             placeholder="e.g. It’s always good to take a break. This 15 minute break will 
             recharge the batteries a little."
             className="task-create-input"
