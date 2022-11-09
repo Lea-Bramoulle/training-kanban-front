@@ -1,6 +1,6 @@
 import './Sidebar.scss';
 
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import SidebarSkeleton from '../Skeleton/SidebarSkeleton';
 
 import {
   setDisplayDarkMode,
+  setFirstLoad,
   setSelectedBoardID,
   setToggleSidebar,
   setToggleTaskModal,
@@ -15,14 +16,21 @@ import {
 
 import { useGetAllBoardsQuery } from './../../API/APIslice';
 
-function App() {
+function Sidebar() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
+  const { darkMode, selectedBoardId, toggleSidebar, firstLoad } = useSelector(
     (state) => state.app
   );
   const { data, isLoading, isSuccess } = useGetAllBoardsQuery();
+
+  useEffect(() => {
+    if (data && firstLoad) {
+      dispatch(setSelectedBoardID(data[0].id));
+      dispatch(setFirstLoad());
+    }
+  });
 
   return (
     <div className="sidebar-relative">
@@ -119,4 +127,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sidebar;
