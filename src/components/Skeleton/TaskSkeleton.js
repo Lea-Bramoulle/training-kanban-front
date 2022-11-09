@@ -25,7 +25,7 @@ function TaskSkeleton() {
         <p className="skeleton skeleton--desc"></p>
         <p className="skeleton skeleton--desc-sm"></p>
       </div>
-      <ul className="subtasks-container">
+      <ul className="subtasks-container ">
         <li className="subtasks-element">
           <div className="subtasks-checkbox-false skeleton"></div>
           <p className=" skeleton skeleton--text"></p>
