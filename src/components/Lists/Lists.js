@@ -5,7 +5,12 @@ import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import {
+  useGetAllListsOfOneBoardQuery,
+  useUpdateTaskMutation,
+} from './../../API/APIslice';
 
 import { setSelectedTaskID, setToggleTaskModal } from './../App/appSlice';
 
@@ -23,58 +28,114 @@ function Lists() {
     isSuccess,
   } = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
+  const boardListsDataQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
+
+  const [updateTask] = useUpdateTaskMutation();
+
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    updateTask({
+      id: draggableId,
+      list_id: destination.droppableId,
+    })
+      .unwrap()
+      .then((data) => {
+        boardListsDataQuery.refetch();
+      });
+  };
+
   return (
-    <div className="lists-container">
-      {isLoading && <ListsSkeleton />}
-      {isSuccess &&
-        listsOfBoardData?.map((element) => (
-          <div className="list" key={element.id}>
-            <div className="list-header">
-              <h2 className="list-title">
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="lists-container">
+        {isLoading && <ListsSkeleton />}
+        {isSuccess &&
+          listsOfBoardData?.map((list) => (
+            <Droppable droppableId={`${list.id}`} key={list.id}>
+              {(provided) => (
                 <div
-                  className="list-title-bullet"
-                  style={{ backgroundColor: `${element.color}` }}
-                ></div>
-                {element.name} ( {element.tasks.length} )
-              </h2>
-            </div>
-            <div className="tasks">
-              {element.tasks.map((element) => (
-                <div className="task-container" key={element.id}>
-                  <p
-                    className="task-title"
-                    onClick={() => dispatch(setSelectedTaskID(element.id))}
-                  >
-                    <Link
-                      to={`/task/${element.id}`}
-                      state={{ background: location }}
-                      onClick={() => dispatch(setToggleTaskModal())}
-                    >
-                      {element.name}
-                    </Link>
-                  </p>
-                  <p className="task-subtitle">
-                    {element.subtasks.filter((e) => e.is_done === true).length}{' '}
-                    of {element.subtasks.length} subtasks
-                  </p>
+                  className="list"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  <div className="list-header">
+                    <h2 className="list-title">
+                      <div
+                        className="list-title-bullet"
+                        style={{ backgroundColor: `${list.color}` }}
+                      ></div>
+                      {list.name} ( {list.tasks.length} )
+                    </h2>
+                  </div>
+                  <div className="tasks">
+                    {list.tasks.map((task) => (
+                      <Draggable
+                        draggableId={`${task.id}`}
+                        index={task.id}
+                        key={task.id}
+                      >
+                        {(provided) => (
+                          <div
+                            className="task-container"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <p
+                              className="task-title"
+                              onClick={() =>
+                                dispatch(setSelectedTaskID(task.id))
+                              }
+                            >
+                              <Link
+                                to={`/task/${task.id}`}
+                                state={{ background: location }}
+                                onClick={() => dispatch(setToggleTaskModal())}
+                              >
+                                {task.name}
+                              </Link>
+                            </p>
+                            <p className="task-subtitle">
+                              {
+                                task.subtasks.filter((e) => e.is_done === true)
+                                  .length
+                              }{' '}
+                              of {task.subtasks.length} subtasks
+                            </p>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      <div className="list-new">
-        <p>
-          <Link
-            to={`/list/create`}
-            state={{ background: location }}
-            onClick={() => dispatch(setToggleTaskModal())}
-          >
-            <i className="fa-sharp fa-solid fa-plus"></i> New Column
-          </Link>
-        </p>
+              )}
+            </Droppable>
+          ))}
+        <div className="list-new">
+          <p>
+            <Link
+              to={`/list/create`}
+              state={{ background: location }}
+              onClick={() => dispatch(setToggleTaskModal())}
+            >
+              <i className="fa-sharp fa-solid fa-plus"></i> New Column
+            </Link>
+          </p>
+        </div>
+        <Outlet />
       </div>
-      <Outlet />
-    </div>
+    </DragDropContext>
   );
 }
 
