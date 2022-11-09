@@ -26,7 +26,7 @@ function Sidebar() {
   const { data, isLoading, isSuccess } = useGetAllBoardsQuery();
 
   useEffect(() => {
-    if (data && firstLoad) {
+    if (data && data.length !== 0 && firstLoad) {
       dispatch(setSelectedBoardID(data[0].id));
       dispatch(setFirstLoad());
     }
