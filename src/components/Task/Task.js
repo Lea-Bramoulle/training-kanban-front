@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link, useLocation } from 'react-router-dom';
 
+import TaskSkeleton from '../Skeleton/TaskSkeleton';
+
 import {
   useUpdateSubtaskMutation,
   useUpdateTaskMutation,
@@ -42,7 +44,11 @@ function Task() {
     subtaskDescriptionValue,
   } = useSelector((state) => state.app);
 
-  const selectedTask = useGetOneTaskQuery(selectedTaskId).data;
+  const {
+    data: selectedTask,
+    isLoading,
+    isSuccess,
+  } = useGetOneTaskQuery(selectedTaskId);
   const selectedBoard = useGetAllListsOfOneBoardQuery(selectedBoardId).data;
 
   const selectedTaskQuery = useGetOneTaskQuery(selectedTaskId);
@@ -96,103 +102,107 @@ function Task() {
   return ReactDOM.createPortal(
     <div className="task-details">
       <div className="task-details-container">
-        <div className="task-details-title-section">
-          <h2 className="task-details-title">{selectedTask?.name}</h2>
-          <div>
-            <img
-              src={require('./../../assets/images/icon-vertical-ellipsis.png')}
-              alt="Task option icon"
-              className="boards-element-icon"
-              onClick={() => dispatch(setToggleTaskOptions())}
-            />
-            <img
-              src={require('./../../assets/images/icon-cross.png')}
-              alt="Task option icon"
-              className="boards-element-icon"
-              onClick={() => {
-                selectedBoardQuery.refetch();
-                dispatch(setToggleTaskModal());
-                navigate(-1);
-              }}
-            />
-          </div>
-          {toggleTaskOptions && (
-            <div className="task-options-container">
-              <Link
-                to={`/task/update`}
-                state={{ background: location }}
-                onClick={() => {
-                  dispatch(setToggleTaskModal());
-                  dispatch(setToggleTaskOptions());
-                }}
-              >
-                <p>Edit Task</p>
-              </Link>
-              <Link
-                to={`/task/delete`}
-                state={{ background: location }}
-                className="danger"
-                onClick={() => {
-                  dispatch(setToggleTaskModal());
-                  dispatch(setToggleTaskOptions());
-                }}
-              >
-                <p>Delete Task</p>
-              </Link>
-            </div>
-          )}
-        </div>
-        <p className="task-details-desc">{selectedTask?.description}</p>
-
-        {selectedTask?.subtasks.length === 0 ? (
-          <p className="task-details-empty">
-            No subtasks yet. Begin to organize your work !
-          </p>
-        ) : (
+        {isLoading && <TaskSkeleton />}
+        {isSuccess && (
           <>
-            <h3 className="task-details-subtitle">
-              {
-                selectedTask?.subtasks.filter(
-                  (element) => element.is_done === true
-                ).length
-              }{' '}
-              of {selectedTask?.subtasks.length} subtasks
-            </h3>
-            <ul className="subtasks-container">
-              {selectedTask?.subtasks.map((element) => (
-                <li className="subtasks-element" key={element.id}>
-                  {element.is_done ? (
-                    <>
-                      <div
-                        className="subtasks-checkbox-true"
-                        onClick={() => {
-                          handleUpdateSubtaskStatus(
-                            element.id,
-                            !element.is_done
-                          );
-                        }}
-                      >
-                        <i className="fa-solid fa-check"></i>
-                      </div>
-                      <p className="text-outline">{element.description}</p>
-                    </>
-                  ) : (
-                    <>
-                      <div
-                        className="subtasks-checkbox-false"
-                        onClick={() => {
-                          handleUpdateSubtaskStatus(
-                            element.id,
-                            !element.is_done
-                          );
-                        }}
-                      ></div>
-                      <p className="text-medium">{element.description}</p>
-                    </>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <div className="task-details-title-section">
+              <h2 className="task-details-title">{selectedTask?.name}</h2>
+              <div>
+                <img
+                  src={require('./../../assets/images/icon-vertical-ellipsis.png')}
+                  alt="Task option icon"
+                  className="boards-element-icon"
+                  onClick={() => dispatch(setToggleTaskOptions())}
+                />
+                <img
+                  src={require('./../../assets/images/icon-cross.png')}
+                  alt="Task option icon"
+                  className="boards-element-icon"
+                  onClick={() => {
+                    selectedBoardQuery.refetch();
+                    dispatch(setToggleTaskModal());
+                    navigate(-1);
+                  }}
+                />
+              </div>
+              {toggleTaskOptions && (
+                <div className="task-options-container">
+                  <Link
+                    to={`/task/update`}
+                    state={{ background: location }}
+                    onClick={() => {
+                      dispatch(setToggleTaskModal());
+                      dispatch(setToggleTaskOptions());
+                    }}
+                  >
+                    <p>Edit Task</p>
+                  </Link>
+                  <Link
+                    to={`/task/delete`}
+                    state={{ background: location }}
+                    className="danger"
+                    onClick={() => {
+                      dispatch(setToggleTaskModal());
+                      dispatch(setToggleTaskOptions());
+                    }}
+                  >
+                    <p>Delete Task</p>
+                  </Link>
+                </div>
+              )}
+            </div>
+            <p className="task-details-desc">{selectedTask?.description}</p>
+            {selectedTask?.subtasks.length === 0 ? (
+              <p className="task-details-empty">
+                No subtasks yet. Begin to organize your work !
+              </p>
+            ) : (
+              <>
+                <h3 className="task-details-subtitle">
+                  {
+                    selectedTask?.subtasks.filter(
+                      (element) => element.is_done === true
+                    ).length
+                  }{' '}
+                  of {selectedTask?.subtasks.length} subtasks
+                </h3>
+                <ul className="subtasks-container">
+                  {selectedTask?.subtasks.map((element) => (
+                    <li className="subtasks-element" key={element.id}>
+                      {element.is_done ? (
+                        <>
+                          <div
+                            className="subtasks-checkbox-true"
+                            onClick={() => {
+                              handleUpdateSubtaskStatus(
+                                element.id,
+                                !element.is_done
+                              );
+                            }}
+                          >
+                            <i className="fa-solid fa-check"></i>
+                          </div>
+                          <p className="text-outline">{element.description}</p>
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            className="subtasks-checkbox-false"
+                            onClick={() => {
+                              handleUpdateSubtaskStatus(
+                                element.id,
+                                !element.is_done
+                              );
+                            }}
+                          ></div>
+                          <p className="text-medium">{element.description}</p>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </>
         )}
         <form className="subtasks-form" onSubmit={postNewSubtask}>

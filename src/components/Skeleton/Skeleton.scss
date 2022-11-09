@@ -21,6 +21,13 @@
 		border-radius: 0.12rem;
 	}
 
+    &--subtitle {
+		width: 60%;
+		height: 1.5rem;
+		margin-bottom: 1.5rem;
+		border-radius: 0.12rem;
+	}
+
 	&--text {
 		width: 60%;
 		height: 0.75rem;
@@ -34,6 +41,29 @@
 		margin-bottom: 0.25rem;
 		border-radius: 0.12rem;
     }
+
+    &--text-sm {
+        width: 40%;
+		height: 0.75rem;
+		margin-bottom: 0.25rem;
+		border-radius: 0.12rem;
+    }
+
+    &--desc {
+		width: 90%;
+		height: 0.75rem;
+		margin-bottom: 0.5rem;
+		border-radius: 0.12rem;
+	}
+
+
+    &--desc-sm {
+		width: 60%;
+		height: 0.75rem;
+		margin-bottom: 0.5rem;
+		border-radius: 0.12rem;
+	}
+
 
     & p {
 		width: 60%;

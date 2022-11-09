@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/heading-has-content */
 import '../Lists/Lists.scss';
 import './Skeleton.scss';
 
@@ -72,11 +73,6 @@ function ListsSkeleton() {
             <p className="task-subtitle skeleton skeleton--text"></p>
           </div>
         </div>
-      </div>
-      <div className="list-new">
-        <p>
-          <i className="fa-sharp fa-solid fa-plus"></i> New Column
-        </p>
       </div>
     </div>
   );
