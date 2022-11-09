@@ -1,0 +1,67 @@
+@use 'src/styles/vars';
+
+
+.skeleton {
+	opacity: 0.5;
+	animation: skeleton-loading 0.75s linear infinite alternate;
+
+
+    &-list-header {
+        display: flex;
+
+        & h2 {
+            padding-left: 1rem;
+        }
+    }
+
+    &--title {
+		width: 60%;
+		height: 0.9rem;
+		margin-bottom: 0.25rem;
+		border-radius: 0.12rem;
+	}
+
+	&--text {
+		width: 60%;
+		height: 0.75rem;
+		margin-bottom: 0.25rem;
+		border-radius: 0.12rem;
+	}
+
+    &--text-lg{
+        width: 80%;
+		height: 0.75rem;
+		margin-bottom: 0.25rem;
+		border-radius: 0.12rem;
+    }
+
+    & p {
+		width: 60%;
+		height: 0.75rem;
+		margin-bottom: 0.25rem;
+		border-radius: 0.12rem;
+	}
+    
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsl(200, 20%, 70%);
+	}
+
+	100% {
+		background-color: hsl(200, 20%, 95%);
+	}
+}
+
+// .skeleton_text {
+// 	width: 100%;
+// 	height: 0.5rem;
+// 	margin-bottom: 0.25rem;
+// 	border-radius: 0.12rem;
+// }
+
+// .skeleton_text:last-child {
+// 	margin-bottom: 0;
+// 	width: 80%;
+// }

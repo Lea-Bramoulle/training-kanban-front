@@ -4,6 +4,8 @@ import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
+import SidebarSkeleton from '../Skeleton/SidebarSkeleton';
+
 import {
   setDisplayDarkMode,
   setSelectedBoardID,
@@ -20,7 +22,7 @@ function App() {
   const { darkMode, selectedBoardId, toggleSidebar } = useSelector(
     (state) => state.app
   );
-  const { data } = useGetAllBoardsQuery();
+  const { data, isLoading, isSuccess } = useGetAllBoardsQuery();
 
   return (
     <div className="sidebar-relative">
@@ -34,24 +36,26 @@ function App() {
           <div className="boards">
             <h2 className="boards-title">All Boards ({data?.length})</h2>
             <ul className="boards-container">
-              {data?.map((element) => (
-                <li
-                  key={element.id}
-                  className={
-                    element.id === selectedBoardId
-                      ? 'boards-element boards-element--active'
-                      : 'boards-element'
-                  }
-                  onClick={() => dispatch(setSelectedBoardID(element.id))}
-                >
-                  <img
-                    src={require('./../../assets/images/icon-board.png')}
-                    alt="board icon"
-                    className="boards-element-icon"
-                  />
-                  {element.name}
-                </li>
-              ))}
+              {isLoading && <SidebarSkeleton />}
+              {isSuccess &&
+                data?.map((element) => (
+                  <li
+                    key={element.id}
+                    className={
+                      element.id === selectedBoardId
+                        ? 'boards-element boards-element--active'
+                        : 'boards-element'
+                    }
+                    onClick={() => dispatch(setSelectedBoardID(element.id))}
+                  >
+                    <img
+                      src={require('./../../assets/images/icon-board.png')}
+                      alt="board icon"
+                      className="boards-element-icon"
+                    />
+                    {element.name}
+                  </li>
+                ))}
             </ul>
             <div className="boards-element boards-element--main">
               <img
