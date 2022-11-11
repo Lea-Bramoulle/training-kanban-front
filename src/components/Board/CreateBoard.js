@@ -23,7 +23,7 @@ function CreateBoard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { boardTitleValue } = useSelector((state) => state.app);
+  const { boardTitleValue, darkMode } = useSelector((state) => state.app);
 
   const [postBoard] = usePostBoardMutation();
 
@@ -33,7 +33,9 @@ function CreateBoard() {
     e.preventDefault();
 
     if (!e.target.name.value) {
-      toast.error('Pleade add a navlid title in order to create a new board.');
+      toast.error(
+        'Pleade add a valid title in order to create this new board.'
+      );
     }
 
     postBoard({
@@ -97,6 +99,7 @@ function CreateBoard() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme={darkMode ? 'dark' : 'light'}
       />
     </div>,
     document.getElementById('modal-root')

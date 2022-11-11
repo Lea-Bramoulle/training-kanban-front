@@ -25,9 +25,8 @@ function CreateTask() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { selectedBoardId, taskTitleValue, taskDescriptionValue } = useSelector(
-    (state) => state.app
-  );
+  const { selectedBoardId, taskTitleValue, taskDescriptionValue, darkMode } =
+    useSelector((state) => state.app);
 
   const [postTask] = usePostTaskMutation();
 
@@ -161,6 +160,7 @@ function CreateTask() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme={darkMode ? 'dark' : 'light'}
       />
     </div>,
     document.getElementById('modal-root')

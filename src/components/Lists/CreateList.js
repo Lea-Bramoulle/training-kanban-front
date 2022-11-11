@@ -26,9 +26,8 @@ function CreateTask() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { selectedBoardId, listTitleValue, colorPickerValue } = useSelector(
-    (state) => state.app
-  );
+  const { selectedBoardId, listTitleValue, colorPickerValue, darkMode } =
+    useSelector((state) => state.app);
 
   const selectedBoardQuery = useGetAllListsOfOneBoardQuery(selectedBoardId);
 
@@ -38,7 +37,9 @@ function CreateTask() {
     e.preventDefault();
 
     if (!e.target.name.value) {
-      toast.error('Pleade add a valid title in order to create a new board.');
+      toast.error(
+        'Please add a valid title in order to add a new column to this board.'
+      );
     }
 
     postList({
@@ -117,6 +118,7 @@ function CreateTask() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme={darkMode ? 'dark' : 'light'}
       />
     </div>,
     document.getElementById('modal-root')
