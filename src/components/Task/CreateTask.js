@@ -6,6 +6,9 @@ import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { usePostTaskMutation } from './../../API/APIslice';
 
 import { useGetAllListsOfOneBoardQuery } from './../../API/APIslice';
@@ -33,6 +36,15 @@ function CreateTask() {
 
   const postNewTask = (e) => {
     e.preventDefault();
+
+    if (!e.target.name.value) {
+      toast.error('Please add a description in order to create your task.');
+    }
+
+    if (!e.target.description.value) {
+      toast.error('Please add a title in order to create your task.');
+    }
+
     postTask({
       name: e.target.name.value,
       description: e.target.description.value,
@@ -139,6 +151,17 @@ function CreateTask() {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>,
     document.getElementById('modal-root')
   );

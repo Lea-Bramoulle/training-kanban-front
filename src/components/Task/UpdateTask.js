@@ -92,6 +92,8 @@ function UpdateTask() {
         dispatch(setToggleTaskModal());
         navigate(-2);
       });
+
+    return;
   };
 
   const handleDeleteSubtask = (subtaskId) => {

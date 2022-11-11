@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { TwitterPicker } from 'react-color';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   usePostListMutation,
   useGetAllListsOfOneBoardQuery,
@@ -33,6 +36,10 @@ function CreateTask() {
 
   const postNewList = (e) => {
     e.preventDefault();
+
+    if (!e.target.name.value) {
+      toast.error('Pleade add a valid title in order to create a new board.');
+    }
 
     postList({
       name: e.target.name.value,
@@ -100,6 +107,17 @@ function CreateTask() {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>,
     document.getElementById('modal-root')
   );

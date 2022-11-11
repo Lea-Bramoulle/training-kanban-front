@@ -6,6 +6,9 @@ import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { usePostBoardMutation } from './../../API/APIslice';
 
 import { useGetAllBoardsQuery } from './../../API/APIslice';
@@ -28,6 +31,10 @@ function CreateBoard() {
 
   const postNewBoard = (e) => {
     e.preventDefault();
+
+    if (!e.target.name.value) {
+      toast.error('Pleade add a navlid title in order to create a new board.');
+    }
 
     postBoard({
       name: e.target.name.value,
@@ -80,6 +87,17 @@ function CreateBoard() {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>,
     document.getElementById('modal-root')
   );
